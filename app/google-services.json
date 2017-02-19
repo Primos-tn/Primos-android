@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "90005014927",
+    "firebase_url": "https://pingo-1315.firebaseio.com",
+    "project_id": "pingo-1315",
+    "storage_bucket": "pingo-1315.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90005014927:android:6299728d62b15057",
+        "android_client_info": {
+          "package_name": "pingo.mobile.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90005014927-3kp3gbm2i5l2gp3uqpql7n4ueb5lj718.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "90005014927-9il2istifpimuqkc314q7rrv6r0arl6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJyA_MiFkFhHUotrEzmLUbUGyFp-O1avg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

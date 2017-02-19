@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/right_drawer"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="end"
+    android:background="@color/WhiteColor"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp"
+    android:orientation="vertical">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_filter_fragment"
+        android:name="pingo.mobile.com.ui.home.MainFragmentFilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="@string/main_filter_fragment_tag" />
+</LinearLayout>

@@ -1,0 +1,54 @@
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Back view should be first to be drawn first! -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/login"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        style="@style/Favorite"
+        android:orientation="horizontal"
+        android:id="@+id/relation_container_id">
+        <TextView
+            android:id="@+id/relation_text_id"
+            android:text="follow"
+            android:textSize="14dp"
+            android:textColor="@color/WhiteColor"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+        <ImageView
+            android:id="@+id/relation_image_view_id"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favorite"
+            android:layout_width="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="15dip"
+            android:id="@+id/brand_name"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/ic_album_overflow_height"
+            android:text="Hello"
+            android:background="@color/ColorPrimary"
+            android:textColor="@color/WhiteColor"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

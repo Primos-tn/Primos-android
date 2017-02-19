@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">تسجيل الدخول</string>
+    <string name="password">كلمه السر</string>
+    <string name="forgot_password">هل نسيت كلمة المرور?</string>
+    <string name="email_or_username">البريد الإلكتروني أو اسم المستخدم</string>
+    <string name="password_confirmation">تأكيد كلمة المرور</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="age">العمر</string>
+    <string name="home_products_header_fragment_tag">home_products_header_fragment_tag</string>
+    <string name="products_filter_apply">apply</string>
+    <string name="products_filter_reset">reset</string>
+    <string name="categories">Categories</string>
+    <string name="countries">Coutries</string>
+    <string name="about">معلومات عنا</string>
+    <string name="take_tour">View tour</string>
+    <string name="login_out">خروج</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="settings">إعدادات</string>
+    <string name="favorites">المفضلة</string>
+    <string name="Brands">العلامات التجارية</string>
+    <string name="my_brands">علاماتي التجارية</string>
+    <string name="hottest">الأكثر متابعة </string>
+    <string name="include_geo">تفعيل الموقع</string>
+    <string name="hint">Hint</string>
+    <string name="title_activity_register">تسجيل</string>
+    <string name="follow">متابعة</string>
+</resources>

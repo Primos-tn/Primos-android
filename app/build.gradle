@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
+    defaultConfig {
+        applicationId "pingo.mobile.com"
+        minSdkVersion 16
+        targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile ("com.facebook.android:facebook-android-sdk:4.1.0") {
+        exclude group: 'com.parse.bolts', module: 'bolts-android'
+    }
+    compile 'com.android.support:support-core-ui:24.2.1'
+    compile 'com.android.support:support-fragment:24.2.1'
+    compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.google.android.gms:play-services-maps:9.6.1'
+    compile 'org.apache.httpcomponents:httpcore:4.3.2'
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile "com.google.firebase:firebase-messaging:9.6.1"
+    compile 'com.github.greenfrvr:hashtag-view:1.2.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.facebook.fresco:fresco:0.14.1'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+}
+
+apply plugin: 'com.google.gms.google-services'

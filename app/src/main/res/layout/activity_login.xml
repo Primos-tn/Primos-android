@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.account.LoginActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:textColor="#fff">
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/facebook_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="15dip" />
+
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dip"
+            android:background="@drawable/input_corner"
+            android:hint="@string/email_or_username"
+            android:padding="15dp"
+            android:maxLines="1"
+            android:textColor="@color/ColorPrimary"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:textColorHint="@color/ColorPrimary" />
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dip"
+            android:maxLines="1"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@drawable/input_corner"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:textColor="@color/ColorPrimary"
+            android:textColorHint="@color/ColorPrimary" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/input_corner"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="@string/login"
+            android:textColor="@color/ColorPrimary" />
+        <include layout="@layout/progress_bar"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/go_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="@string/forgot_password"
+                android:textColor="@color/ColorPrimary" />
+
+            <TextView
+                android:id="@+id/go_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="@string/go_register"
+                android:textColor="@color/ColorPrimary" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+

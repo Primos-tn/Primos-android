@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+        <include layout="@layout/progress_bar"/>
+        <TextView
+            android:text="tap toad load more"
+            android:visibility="gone"
+            android:id="@+id/initialize"
+            android:background="@drawable/menu_button"
+            android:textColor="@color/ColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+</LinearLayout>

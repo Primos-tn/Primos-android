@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- http://android__code.blogspot.com/2015/05/android-relativelayout-border-bottom.html -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <shape android:shape="rectangle">
+            <!-- draw a 4 dp width border around the rectangle shape -->
+            <stroke android:color="@color/ColorPrimary" android:width="4dp"/>
+        </shape>
+    </item>
+    <!--
+        hide left, top and right side border using white color
+        by padding 4 dp bottom side
+    -->
+    <item android:bottom="0.5dp">
+        <shape android:shape="rectangle" >
+            <solid android:color="@android:color/white"/>
+        </shape>
+    </item>
+    <item>
+        <shape  xmlns:android="http://schemas.android.com/apk/res/android" >
+            <padding android:top="20dip" android:left="15dip" android:bottom="5dp">
+            </padding >
+        </shape>
+    </item>
+
+</layer-list>

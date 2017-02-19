@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">Pingo</string>
+
+    <string name="go_register">Register</string>
+    <string name="app_facebook_id">1608850742722219</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_pay_test">PayTest</string>
+    <!-- Settings-->
+    <string name="original_category">Original Category</string>
+    <string name="original_preference">Original Preference</string>
+    <string name="original_checkbox_preference">Original CheckBox Preference</string>
+    <string name="original_summary">Original Summary</string>
+    <string name="original_summary_with_icon">Original Summary + Icon</string>
+    <string name="original_checkbox_key">original_checkbox_key</string>
+    <string name="original_checkbox_summary_on">Original CheckBox Summary On</string>
+    <string name="original_checkbox_summary_off">Original CheckBox Summary Off</string>
+    <string name="original_switch_preference">Original Switch Preference</string>
+    <string name="original_switch_preference_on">Original Switch Summary On</string>
+    <string name="original_switch_preference_off">Original Switch Summary Off</string>
+
+    <string name="material_category">Material Category</string>
+    <string name="material_preference">Material Preference</string>
+    <string name="material_checkbox_preference">Material CheckBox Preference</string>
+    <string name="material_summary">Material Summary</string>
+    <string name="material_summary_with_icon">Material Summary + Icon</string>
+    <string name="material_checkbox_key">material_checkbox_key</string>
+    <string name="material_checkbox_summary_on">Material CheckBox Summary On</string>
+    <string name="material_checkbox_summary_off">Material CheckBox Summary Off</string>
+    <string name="material_switch_preference">Material Switch Preference</string>
+    <string name="material_switch_preference_on">Material Switch Summary On</string>
+    <string name="material_switch_preference_off">Material Switch Summary Off</string>
+    <string name="title_activity_welcome">Welcome</string>
+    <string name="title_activity_forgot_password">Password</string>
+    <string name="product_item_card_action_remind">Remind Me</string>
+    <string name="product_item_card_action_share">Share</string>
+    <string name="product_item_card_action_get_coupon">Get coupon</string>
+    <string name="backdrop_subtitle">This season top 20 albums</string>
+    <string name="header_name">hello</string>
+
+    <string name="fragment_tag">FRAGMENT_TAG</string>
+    <string name="mine_wishes_fragment_tag">MINE_WISHES_FRAGMENT</string>
+    <string name="mine_following_fragment_tag">MINE_FOLLOWING_FRAGMENT</string>
+    <string name="mine_followers_fragment_tag">MINE_FOLLOWERS_FRAGMENT</string>
+    <string name="mine_brands_fragment_tag">MINE_BRANDS_FRAGMENT</string>
+    <string name="products_title">Products</string>
+    <string name="brands_title">Brands</string>
+    <string name="brands_info_tab">Infos</string>
+    <string name="brands_products_tab">Products</string>
+    <string name="brands_stores_tab">Stores</string>
+    <string name="followers_title">Followers</string>
+    <string name="following_title">Following</string>
+    <string name="notifications">Settings</string>
+    <string name="product_wishers">Wishers</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="email_or_username">Email or username</string>
+    <string name="password_confirmation">Password confirmation</string>
+    <string name="username">Username</string>
+    <string name="age">Age</string>
+    <string name="home_products_header_fragment_tag">home_products_header_fragment_tag</string>
+    <string name="products_filter_apply">apply</string>
+    <string name="products_filter_reset">reset</string>
+    <string name="categories">Categories</string>
+    <string name="countries">Coutries</string>
+    <string name="about">About us</string>
+    <string name="take_tour">View tour</string>
+    <string name="main_filter_fragment_tag">main_filter_fragment_tag_string</string>
+    <string name="main_menu_fragment_tag">main_menu_fragment_tag_string</string>
+    <string name="login_out">Exit</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="favorites">Favorites</string>
+    <string name="brands">Brands</string>
+    <string name="hottest">Hottests</string>
+    <string name="include_geo">Include position</string>
+    <string name="hint">Hint</string>
+    <string name="title_activity_register">Register</string>
+    <string name="follow">Follow</string>
+
+</resources>

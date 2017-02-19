@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2px">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        android:minHeight="150dp"
+        android:paddingTop="15dp"
+        card_view:cardCornerRadius="@dimen/card_album_radius">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            fresco:actualImageScaleType="focusCrop"
+             android:layout_height="fill_parent" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/brand_thumbnail"
+            fresco:roundedCornerRadius="5dp"
+            fresco:roundBottomLeft="false"
+            fresco:roundBottomRight="false"
+            fresco:roundWithOverlayColor="@color/BaseColor"
+            fresco:roundingBorderWidth="1dp"
+            fresco:roundingBorderColor="@color/colorPrimary"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="-12dp"  />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/thumbnail">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/album_title_padding"
+                    android:paddingRight="@dimen/album_title_padding"
+                    android:textColor="@color/WhiteColor"
+                    android:textSize="@dimen/album_title" />
+
+                <TextView
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/text_bottom_corner"
+                    android:paddingLeft="@dimen/album_title_padding"
+                    android:paddingRight="@dimen/album_title_padding"
+                    android:textColor="@color/WhiteColor"
+                    android:textSize="@dimen/songs_count" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/home_product_card_view_item_wish_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_favorite"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/home_product_card_view_item_unwish_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_delete_black"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/home_product_card_view_item_menu_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="2dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_item_menu" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

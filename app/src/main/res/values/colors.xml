@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="BaseColor">#e5a421</color>
+    <color name="ColorPrimary">#e56321</color>
+    <color name="WhiteColor">#ffffff</color>
+    <color name="ColorPrimaryDark">#000000</color>
+    <color name="BlackColor">#000000</color>
+    <color name="tabsScrollColor">#ffffff</color>
+    <color name="payPalColorDark">#1e477a</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="viewBg">#f1f5f8</color>
+    <color name="album_title">#4c4c4c</color>
+    <color name="transparent">#004c4c4c</color>
+    <color name="bt_red">#ff0000</color>
+    <color name="none">#00000000</color>
+    <color name="gray">#ccc</color>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="header_name">hello</string>
+
+    <string name="notifications">Settings</string>
+    <string name="product_wishers">wishers</string>
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="email_or_username">Email or username</string>
+    <string name="password_confirmation">Password confirmation</string>
+    <string name="username">Username</string>
+    <string name="age">Age</string>
+    <string name="home_products_header_fragment_tag">home_products_header_fragment_tag</string>
+    <string name="products_filter_apply">apply</string>
+    <string name="products_filter_reset">reset</string>
+    <string name="categories">Categories</string>
+    <string name="countries">Coutries</string>
+    <string name="about">About us</string>
+    <string name="take_tour">View tour</string>
+    <string name="login_out">Exit</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="favorites">Favorites</string>
+    <string name="brands">Brands</string>
+    <string name="my_brands">My brands</string>
+    <string name="hottest">Hottests</string>
+    <string name="include_geo">Include position</string>
+    <string name="hint">Hint</string>
+    <string name="title_activity_register">Register</string>
+    <string name="follow" />
+</resources>

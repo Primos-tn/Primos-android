@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_final_width">24dip</dimen>
+    <dimen name="pagemargin">12dp</dimen>
+</resources>

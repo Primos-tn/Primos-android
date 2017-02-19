@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Primos</string>
+    <string name="app_id">1608850742722219</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="title_activity_login">login</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="mine_products">Mes produits</string>
+    <string name="notifications">Notifications</string>
+    <string name="product_wishers">wishers</string>
+    <string name="login">login</string>
+    <string name="password">Mot de passe</string>
+    <string name="forgot_password">Mot de passe oublié</string>
+    <string name="email_or_username">Email ou utlisateur</string>
+    <string name="password_confirmation">Confirmation mot de passe</string>
+    <string name="username">Utilisateur</string>
+    <string name="age">Age</string>
+    <string name="home_products_header_fragment_tag">home_products_header_fragment_tag</string>
+    <string name="products_filter_apply">Confirmer</string>
+    <string name="products_filter_reset">reset</string>
+    <string name="categories">Catégories</string>
+    <string name="countries">Pays</string>
+    <string name="about">A propos de nous </string>
+    <string name="take_tour">Voir tour</string>
+    <string name="login_out">Exit</string>
+    <string name="profile">Profile</string>
+    <string name="settings">Paramères</string>
+    <string name="favorites">Favories</string>
+    <string name="brands">Marques</string>
+    <string name="my_brands">Mes marques</string>
+    <string name="hottest">Hottests</string>
+    <string name="include_geo">Activier ma position</string>
+    <string name="hint">Hint</string>
+    <string name="title_activity_register">Register</string>
+    <string name="follow">Suivre</string>
+</resources>

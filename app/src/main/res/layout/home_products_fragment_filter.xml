@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/home_products_fragment_filter_header_options"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/component_header_title"
+                android:gravity="center"
+                android:text="@string/categories" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.greenfrvr.hashtagview.HashtagView
+                    android:id="@+id/tags_list"
+                    style="@style/HashtagView"
+                    app:rowMode="stretch"
+                    app:selectionMode="true"
+                    app:tagBackground="@drawable/item_bg_1"
+                    app:tagTextColor="#E5E5E5">
+
+                </com.greenfrvr.hashtagview.HashtagView>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/component_header_title"
+                android:gravity="center"
+                android:text="@string/include_geo" />
+
+            <Switch
+                android:id="@+id/switchButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/component_header_title"
+                android:gravity="center"
+                android:text="@string/include_geo" />
+            <SeekBar
+                android:id="@+id/sbBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="30"
+                android:max="90"
+                android:progressDrawable="@drawable/apptheme_scrubber_progress_horizontal_holo_light"
+                android:thumb="@drawable/apptheme_scrubber_control_selector_holo_light"
+                android:paddingTop="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dots_height">
+
+            <Button
+                android:id="@+id/home_products_fragment_filter_options_apply_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/button"
+                android:textColor="@color/ColorPrimary"
+                android:background="@drawable/input_corner"
+                android:text="@string/products_filter_apply" />
+
+            <Button
+                android:id="@+id/home_products_fragment_filter_options_reset_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_corner"
+                android:text="@string/products_filter_reset" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
