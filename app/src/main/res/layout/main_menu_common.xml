@@ -23,7 +23,7 @@
         android:layout_height="wrap_content" />
     <TextView
         android:layout_width="match_parent"
-        android:text="© 2016 Pigo"
+        android:text="© 2017 Pingo"
         android:background="@drawable/menu_button_text"
         android:gravity="center"
 

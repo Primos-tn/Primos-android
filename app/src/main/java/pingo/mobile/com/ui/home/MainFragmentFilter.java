@@ -3,7 +3,6 @@
  * Project Pingo
  * Created by Pingo Team
  * (c) Pingo tn
- *
  */
 package pingo.mobile.com.ui.home;
 
@@ -28,6 +27,7 @@ import pingo.mobile.com.api.models.Category;
 import pingo.mobile.com.api.models.SearchParamsOptions;
 import pingo.mobile.com.api.responses.CategoriesApiResponse;
 import pingo.mobile.com.stores.CategoriesStore;
+import pingo.mobile.com.ui.common.CategoriesTag;
 import pingo.mobile.com.ui.common.FilterOptionsViewListener;
 import rx.Observer;
 
@@ -77,7 +77,7 @@ public class MainFragmentFilter extends Fragment {
 
                     @Override
                     public void onNext(final CategoriesApiResponse categoriesApiResponse) {
-                        hashtagView.setData(categoriesApiResponse.getCategoryList(), getTagsTransformer(), new HashtagView.DataSelector<Category>() {
+                        hashtagView.setData(categoriesApiResponse.getCategoryList(), CategoriesTag.getTagsTransformer(getActivity()), new HashtagView.DataSelector<Category>() {
                             @Override
                             public boolean preselect(Category item) {
                                 return categoriesApiResponse.getCategoryList().indexOf(item) % 2 == 1;
@@ -96,38 +96,6 @@ public class MainFragmentFilter extends Fragment {
         this.filterOptionsViewListener = filterOptionsViewListener;
     }
 
-    /**
-     *
-     */
-    private HashtagView.DataStateTransform<Category> getTagsTransformer() {
-        return new HashtagView.DataStateTransform<Category>() {
-            @Override
-            public CharSequence prepare(Category item) {
-                String label = item.getName();
-                SpannableString spannableString = new SpannableString(label);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    spannableString.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.ColorPrimary, getActivity().getTheme())), 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                } else {
-                    spannableString.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.ColorPrimary)), 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }
-                return spannableString;
-            }
-
-            @Override
-            public CharSequence prepareSelected(Category item) {
-                String label = item.getName();
-                SpannableString spannableString = new SpannableString(label);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    spannableString.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.WhiteColor, getActivity().getTheme())), 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                } else {
-                    spannableString.setSpan(new ForegroundColorSpan(getActivity().getResources().getColor(R.color.WhiteColor)), 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                }
-                return spannableString;
-            }
-        };
-    }
 
     /**
      *

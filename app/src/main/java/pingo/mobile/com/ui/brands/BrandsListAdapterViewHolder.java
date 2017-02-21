@@ -45,6 +45,7 @@ public class BrandsListAdapterViewHolder extends RecyclerView.ViewHolder {
         Intent intent = new Intent(v.getContext(), BrandProfileActivity.class);
         Bundle mBundle = new Bundle();
         mBundle.putInt(Bundles.OPENED_BRAND_ID, this.brandId);
+        intent.putExtras(mBundle);
         v.getContext().startActivity(intent);
     }
 

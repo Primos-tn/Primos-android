@@ -22,20 +22,50 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/thumbnail"
             android:layout_width="match_parent"
-            fresco:actualImageScaleType="focusCrop"
-             android:layout_height="fill_parent" />
+            android:layout_height="fill_parent"
+            fresco:actualImageScaleType="focusCrop" />
+
+        <HorizontalScrollView
+            android:id="@+id/thumbnails_container"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingLeft="10px"
+            android:layout_gravity="top|right">
+            <LinearLayout
+                android:id="@+id/thumbnails"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
+
+        <HorizontalScrollView
+            android:id="@+id/product_collections_container"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:paddingLeft="10px"
+            android:layout_gravity="top|right">
+            <LinearLayout
+                android:id="@+id/product_collections"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/brand_thumbnail"
-            fresco:roundedCornerRadius="5dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="end|start"
+            android:layout_margin="-12dp"
+            android:padding="2dip"
+            fresco:roundAsCircle="true"
             fresco:roundBottomLeft="false"
             fresco:roundBottomRight="false"
-            fresco:roundWithOverlayColor="@color/BaseColor"
-            fresco:roundingBorderWidth="1dp"
             fresco:roundingBorderColor="@color/colorPrimary"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="-12dp"  />
+            fresco:roundingBorderWidth="1dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -62,7 +92,7 @@
                     android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/text_bottom_corner"
+                    android:background="@color/colorPrimary"
                     android:paddingLeft="@dimen/album_title_padding"
                     android:paddingRight="@dimen/album_title_padding"
                     android:textColor="@color/WhiteColor"

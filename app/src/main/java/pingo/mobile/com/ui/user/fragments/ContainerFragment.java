@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.BrandShortInfo;
 import pingo.mobile.com.ui.common.TabLayout;
+import pingo.mobile.com.ui.user.UserProfilePagerAdapter;
 
 
 public class ContainerFragment extends Fragment implements View.OnClickListener {
@@ -27,11 +27,7 @@ public class ContainerFragment extends Fragment implements View.OnClickListener 
     ViewPager pager;
     UserProfilePagerAdapter adapter;
     TabLayout tabs;
-    CharSequence Titles[] = {"Brands", "Wishes"};
-    /**
-     * Defines the total number of tabs.
-     */
-    int numberOfTabs = 2;
+    CharSequence Titles[] = {"Brands", "Preferences"};
 
     /**
      * Default oncerateView function.
@@ -48,7 +44,7 @@ public class ContainerFragment extends Fragment implements View.OnClickListener 
          * Creating The HomePagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
          */
 
-        adapter = new UserProfilePagerAdapter(getActivity().getSupportFragmentManager(), Titles, numberOfTabs);
+        adapter = new UserProfilePagerAdapter(getActivity().getSupportFragmentManager(), Titles);
         /**
          * Assigning ViewPager View and setting the adapter
          */
@@ -64,22 +60,14 @@ public class ContainerFragment extends Fragment implements View.OnClickListener 
          * To make the Tabs Fixed , This makes the tabs Space Evenly in Available width
          */
         tabs.setDistributeEvenly(true);
-        /**
-         * Setting Custom Color for the Scroll bar indicator of the Tab View
-         */
-        tabs.setCustomTabColorizer(new TabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.ColorPrimary);
-            }
-        });
-        tabs.setViewPager(pager, TabLayout.ICON_MODE);
+
+        tabs.setViewPager(pager, TabLayout.TEXT_ICON_MODE);
 
         return view;
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        HeaderFragment headerFragment = (HeaderFragment) getChildFragmentManager().findFragmentById(R.id.brand_profile_header_fragment);
+        //HeaderFragment headerFragment = (HeaderFragment) getChildFragmentManager().findFragmentById(R.id.brand_profile_header_fragment);
         //headerFragment.setBrand(new BrandShortInfo());
     }
 

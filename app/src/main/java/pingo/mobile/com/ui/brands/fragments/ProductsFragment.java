@@ -5,7 +5,6 @@
  * (c) Pingo tn
  */
 package pingo.mobile.com.ui.brands.fragments;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -33,7 +32,6 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-
 public class ProductsFragment extends Fragment {
 
     private RecyclerView recyclerView;
@@ -51,6 +49,8 @@ public class ProductsFragment extends Fragment {
     // newInstance constructor for creating fragment with arguments
 
     LinearLayout linearLayoutProgressBar;
+
+
 
     public static ProductsFragment newInstance(int page, String title) {
         if (productsFragment == null) {
@@ -75,7 +75,7 @@ public class ProductsFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.home_products_tab_recycler_view);
         //recyclerView.setNestedScrollingEnabled(false);
         //recyclerView.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 1);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(gridLayoutManager);
         mAdapter = new ProductsListAdapter(getContext(), new ArrayList<Product>(), Preferences.getInstance(view.getContext()).getCurrentBrandId());
         recyclerView.setAdapter(mAdapter);
@@ -87,6 +87,7 @@ public class ProductsFragment extends Fragment {
                 loadNextPage(mAdapter.getItemCount());
             }
         };
+        loadNextPage(0);
         recyclerView.addOnScrollListener(endlessRecyclerViewScrollListener);
         return view;
 

@@ -37,6 +37,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import pingo.mobile.com.R;
 import pingo.mobile.com.api.responses.ProductsApiResponse;
 import pingo.mobile.com.stores.ProductsStore;
+import pingo.mobile.com.utils.storage.Preferences;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -61,7 +62,7 @@ public class ProductsMapFragment extends Fragment {
     GoogleMap.OnCameraIdleListener onCameraIdleListener = new GoogleMap.OnCameraIdleListener() {
         @Override
         public void onCameraIdle() {
-            loadData();
+            loadData(true);
         }
     };
 
@@ -83,7 +84,7 @@ public class ProductsMapFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.map_fragment, container, false);
+        View view = inflater.inflate(R.layout.brand_stores_map_fragment, container, false);
         mMapView = (MapView) view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
 
@@ -106,7 +107,7 @@ public class ProductsMapFragment extends Fragment {
                 initFirstPosition();
                 mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20, 500, mLocationListener);
                 googleMap.setOnCameraIdleListener(onCameraIdleListener);
-                loadData();
+                loadData(false);
             }
         });
 
@@ -123,7 +124,13 @@ public class ProductsMapFragment extends Fragment {
             updatePosition(locationGPS.getLatitude(), locationGPS.getLongitude(), true);
         } else if (locationNet != null) {
             updatePosition(locationNet.getLatitude(), locationNet.getLongitude(), true);
+        } else {
+            LatLng last = Preferences.getInstance().getLastUserLocationMovedTo();
+            if (last != null) {
+                updatePosition(last.latitude, last.latitude, true);
+            }
         }
+
     }
 
     /**
@@ -225,12 +232,12 @@ public class ProductsMapFragment extends Fragment {
     /**
      *
      */
-    double getDistanceFromCenter (){
-        LatLng center = oldBounds.getCenter() ;
+    double getDistanceFromCenter() {
+        LatLng center = oldBounds.getCenter();
         Location centerLocation = new Location("");
         centerLocation.setLatitude(center.latitude);
         centerLocation.setLongitude(center.longitude);
-        LatLng southwest = oldBounds.southwest ;
+        LatLng southwest = oldBounds.southwest;
 
         Location southWestLocation = new Location("");
         southWestLocation.setLatitude(southwest.latitude);
@@ -242,7 +249,7 @@ public class ProductsMapFragment extends Fragment {
     /**
      * This method is responsible to import lat and lng information from WebService and to place markers
      */
-    private void loadData() {
+    private void loadData(final boolean updateLastLocation) {
         /**
          * The RESTAdapter assumes that the URLs and JSON associated with each model are conventional
          */
@@ -269,7 +276,10 @@ public class ProductsMapFragment extends Fragment {
 
                                @Override
                                public void onNext(ProductsApiResponse products) {
-
+                                   if (updateLastLocation) {
+                                       Preferences.getInstance().setLastUserLocationMovedTo(googleMap.getCameraPosition().target);
+                                   }
+                                   // TODO update marker
                                }
                            }
 

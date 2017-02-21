@@ -24,6 +24,7 @@
         android:layout_height="wrap_content" />
     <TextView
         android:layout_width="match_parent"
+        android:id="@+id/facebook_link"
         android:text="@string/followers_title"
         android:padding="@dimen/album_title"
         android:textColor="@color/ColorPrimary"

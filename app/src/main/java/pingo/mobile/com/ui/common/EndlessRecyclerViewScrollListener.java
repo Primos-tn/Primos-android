@@ -12,7 +12,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
     private int visibleThreshold = 5;
     // True if we are still waiting for the last set of data to load.
     private boolean isLoading = false;
-    ;
+    private int page = 0;
     private int lastVisibleItem, totalItemCount;
 
     RecyclerView.LayoutManager mLayoutManager;
@@ -34,7 +34,7 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         int totalItemCount = mLayoutManager.getItemCount();
         lastVisibleItem = ((LinearLayoutManager) mLayoutManager).findLastVisibleItemPosition();
         if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-            onLoadMore(0, totalItemCount);
+            onLoadMore(this.page++, totalItemCount);
         }
     }
 

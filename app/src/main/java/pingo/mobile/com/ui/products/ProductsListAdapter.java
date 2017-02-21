@@ -86,6 +86,8 @@ public class ProductsListAdapter extends RecyclerView
                                     .getSmallThumbnail()
                                     .getUrl()))
             );
+            holder.count.setText(product.getProductInfo().getName());
+            holder.addImages(mContext, product.getPictures());
         }
     }
 

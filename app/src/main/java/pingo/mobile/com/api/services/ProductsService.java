@@ -31,7 +31,7 @@ public interface ProductsService {
     @GET(Products.PRODUCTS_LIST)
     Observable<ProductsApiResponse> getList(@Query("page") int page,
                                             @Query("limit") int limit,
-                                            @Query("query") String searchQuery,
+                                            @Query("q") String searchQuery,
                                             @Query("categoriesList[]") int[] categoriesQueryString,
                                             @Query(value="map", encodeValue = true) Map<String, Object> countriesQueryString,
                                             @Query("age") int age);

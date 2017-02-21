@@ -8,8 +8,10 @@
  */
 package pingo.mobile.com.ui.brands.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import android.view.ViewGroup;
 import pingo.mobile.com.R;
 import pingo.mobile.com.api.models.Brand;
 import pingo.mobile.com.stores.BrandsStore;
+import pingo.mobile.com.ui.brands.ProfilePagerAdapter;
 import pingo.mobile.com.ui.common.TabLayout;
 import pingo.mobile.com.utils.constants.Bundles;
 import rx.Observer;
@@ -37,7 +40,6 @@ public class ProfileContainerFragment extends Fragment implements View.OnClickLi
     /**
      * Defines the total number of tabs.
      */
-    int numberOfTabs = 3;
     int brandId;
     private HeaderFragment headerFragment;
 
@@ -64,7 +66,7 @@ public class ProfileContainerFragment extends Fragment implements View.OnClickLi
         };
 
 
-        adapter = new ProfilePagerAdapter(brandId, getActivity().getSupportFragmentManager(), Titles, numberOfTabs);
+        adapter = new ProfilePagerAdapter(brandId, getActivity().getSupportFragmentManager(), Titles);
         /**
          * Assigning ViewPager View and setting the adapter
          */
@@ -89,7 +91,7 @@ public class ProfileContainerFragment extends Fragment implements View.OnClickLi
                 return getResources().getColor(R.color.tabsScrollColor);
             }
         });
-        tabs.setViewPager(pager, TabLayout.ICON_MODE);
+        tabs.setViewPager(pager, TabLayout.TEXT_ICON_MODE);
         loadInformation();
         return view;
     }
@@ -129,6 +131,13 @@ public class ProfileContainerFragment extends Fragment implements View.OnClickLi
      */
     void attachBrandInfo(Brand brand) {
         headerFragment.setBrand(brand);
+        // Send an Intent with an action named "custom-event-name". The Intent sent should
+// be received by the ReceiverActivity.
+        Log.d("sender", "Broadcasting message");
+        Intent intent = new Intent(Bundles.BRAND_INFO_MESSAGE_RECEIVER);
+        // You can also include some extra data.
+        intent.putExtra(Bundles.BRAND_PARCELABLE_KEY, brand);
+        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(intent);
 
     }
 

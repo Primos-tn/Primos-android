@@ -110,7 +110,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private void setTabLayout(TabLayout tabLayout) {
         final int[] mapTabsIcons = {
                 R.drawable.ic_map,
-                R.drawable.ic_map2
+                R.drawable.ic_map_white
         };
         final int[] listTabsIcons = {
                 R.drawable.ic_bubble_black,

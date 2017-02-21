@@ -15,7 +15,6 @@ import pingo.mobile.com.R;
 
 
 public class SettingsActivity extends Activity {
-
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -26,8 +25,10 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    /**
+     *
+     */
     public static class SettingsFragment extends PreferenceFragment {
-
         @Override public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.prefs);

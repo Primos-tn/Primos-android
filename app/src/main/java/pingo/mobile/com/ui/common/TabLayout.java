@@ -40,6 +40,7 @@ public class TabLayout extends HorizontalScrollView {
      *
      */
     public static final int TEXT_ICON_MODE = 3;
+
     /**
      * Allows complete control over the colors drawn in the tab layout. Set with
      * {@link #setCustomTabColorizer(TabColorizer)}.
@@ -54,7 +55,7 @@ public class TabLayout extends HorizontalScrollView {
     }
 
     private static final int TITLE_OFFSET_DIPS = 5;
-    private static final int TAB_VIEW_PADDING_DIPS = 10;
+    private static final int TAB_VIEW_PADDING_DIPS = 2;
     private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
 
     private int titleOffset;
@@ -91,12 +92,12 @@ public class TabLayout extends HorizontalScrollView {
         titleOffset = (int) (TITLE_OFFSET_DIPS * getResources().getDisplayMetrics().density);
 
         slidingTabStrip = new SlidingTabStrip(context);
-        addView(slidingTabStrip, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        addView(slidingTabStrip, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     }
 
     /**
      * Set the custom {@link TabColorizer} to be used.
-     *
+     * <p>
      * If you only require simple custmisation then you can use
      * {@link #setSelectedIndicatorColors(int...)} to achieve
      * similar effects.
@@ -132,7 +133,7 @@ public class TabLayout extends HorizontalScrollView {
      * Set the custom layout to be inflated for the tab views.
      *
      * @param layoutResId Layout id to be inflated
-     * @param textViewId id of the {@link TextView} in the inflated view
+     * @param textViewId  id of the {@link TextView} in the inflated view
      */
     public void setCustomTabView(int layoutResId, int textViewId) {
         tabViewLayoutId = layoutResId;
@@ -152,56 +153,55 @@ public class TabLayout extends HorizontalScrollView {
         }
     }
 
-    /**
-     * Create a default view to be used for tabs. This is called if a custom tab view is not set via
-     * {@link #setCustomTabView(int, int)}.
-     */
-    protected TextView createDefaultTabView(Context context) {
-        TextView textView = new TextView(context);
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TAB_VIEW_TEXT_SIZE_SP);
-        textView.setTypeface(Typeface.DEFAULT_BOLD);
-        textView.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        TypedValue outValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
-                outValue, true);
-        textView.setBackgroundResource(outValue.resourceId);
-        textView.setAllCaps(true);
-
-        int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
-        textView.setPadding(padding, padding, padding, padding);
-
-        return textView;
-    }
 
     /**
-     *
      * @param adapter
      * @param clickListener
      */
-    void setTextIconMode (BasePagerAdapter adapter, OnClickListener clickListener){
-
+    void setTextIconMode(BasePagerAdapter adapter, OnClickListener clickListener) {
+        TextView textView;
+        LinearLayout linearLayout;
+        Context context = getContext();
+        int width = (int) (getResources().getDisplayMetrics().widthPixels / viewPager.getAdapter().getCount());
+        ImageView tabIconView = null;
         for (int i = 0; i < adapter.getCount(); i++) {
-            View tabView = null;
-            tabView = createDefaultImageView(getContext());
-            if (viewPager.getCurrentItem() == i) {
-                tabView.setSelected(true);
+            linearLayout = new LinearLayout(context);
+            textView = new TextView(context);
+            textView.setText(adapter.getPageTitle(i));
+            textView.setPadding(10, 10, 10, 10);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                textView.setTextColor(context.getResources().getColorStateList(R.color.tabs, context.getTheme()));
+            } else {
+                textView.setTextColor(context.getResources().getColorStateList(R.color.tabs));
             }
-            tabView.setOnClickListener(clickListener);
-            slidingTabStrip.addView(tabView);
+            if (viewPager.getCurrentItem() == i) {
+                textView.setSelected(true);
+            }
+            textView.setAllCaps(true);
+            linearLayout.addView(textView);
+            tabIconView = createDefaultImageView(getContext());
+            if (viewPager.getCurrentItem() == i) {
+                tabIconView.setImageDrawable(getResources().getDrawable(adapter.getDrawableId(i)));
+            } else {
+                tabIconView.setImageDrawable(getResources().getDrawable(adapter.getDrawableOffId(i)));
+            }
+            linearLayout.addView(tabIconView);
+            linearLayout.setOnClickListener(clickListener);
+            linearLayout.setMinimumWidth(width);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+            params.height = LayoutParams.MATCH_PARENT;
+            linearLayout.setLayoutParams(params);
+            slidingTabStrip.addView(linearLayout);
         }
     }
 
     /**
-     *
      * @param adapter
      * @param clickListener
      */
-    void setTextMode (BasePagerAdapter adapter, OnClickListener clickListener){
-        TextView textView ;
-        Context context  = getContext() ;
+    void setTextMode(BasePagerAdapter adapter, OnClickListener clickListener) {
+        TextView textView;
+        Context context = getContext();
         for (int i = 0; i < adapter.getCount(); i++) {
             textView = new TextView(context);
             textView.setText(adapter.getPageTitle(i));
@@ -221,14 +221,13 @@ public class TabLayout extends HorizontalScrollView {
     }
 
     /**
-     *
      * @param adapter
      * @param clickListener
      */
-    void setIconMode (BasePagerAdapter adapter, OnClickListener clickListener){
+    void setIconMode(BasePagerAdapter adapter, OnClickListener clickListener) {
         ImageView tabIconView = null;
         for (int i = 0; i < adapter.getCount(); i++) {
-            tabIconView = createDefaultImageView(getContext());
+            tabIconView = createSingleImageView(getContext());
             tabIconView.setImageDrawable(getResources().getDrawable(adapter.getDrawableId(i)));
             if (viewPager.getCurrentItem() == i) {
                 tabIconView.setSelected(true);
@@ -237,21 +236,21 @@ public class TabLayout extends HorizontalScrollView {
             slidingTabStrip.addView(tabIconView);
         }
     }
+
     /**
      * populateTabStrip() This is the method that sets icons into tabs
-     *
      */
     private void populateTabStrip(int mode) {
         final BasePagerAdapter adapter = (BasePagerAdapter) viewPager.getAdapter();
         final View.OnClickListener tabClickListener = new TabClickListener();
-        switch (mode){
-            case 3 :
+        switch (mode) {
+            case 3:
                 setTextIconMode(adapter, tabClickListener);
                 break;
-            case 2 :
+            case 2:
                 setIconMode(adapter, tabClickListener);
                 break;
-            case 1 :
+            case 1:
                 setTextMode(adapter, tabClickListener);
                 break;
         }
@@ -259,17 +258,28 @@ public class TabLayout extends HorizontalScrollView {
 
     /**
      * Create imageView to inject into tabs header
+     *
      * @return an imageView
      */
     protected ImageView createDefaultImageView(Context context) {
         ImageView imageView = new ImageView(context);
+        int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
+        imageView.setPadding(padding, padding, padding, padding);
+        return imageView;
+    }
 
+    /**
+     * Create imageView to inject into tabs header
+     *
+     * @return an imageView
+     */
+    protected ImageView createSingleImageView(Context context) {
+        ImageView imageView = new ImageView(context);
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
         imageView.setPadding(padding, padding, padding, padding);
 
         int width = (int) (getResources().getDisplayMetrics().widthPixels / viewPager.getAdapter().getCount());
         imageView.setMinimumWidth(width);
-
         return imageView;
     }
 
@@ -287,7 +297,8 @@ public class TabLayout extends HorizontalScrollView {
 
     /**
      * Scrolls to a particular tab if tab scrolling is enabled
-     * @param tabIndex index to scroll
+     *
+     * @param tabIndex       index to scroll
      * @param positionOffset
      */
     private void scrollToTab(int tabIndex, int positionOffset) {
@@ -314,6 +325,7 @@ public class TabLayout extends HorizontalScrollView {
 
     private class InternalViewPagerListener implements ViewPager.OnPageChangeListener {
         private int mScrollState;
+
         /**
          * This method will be invoked when the current page is scrolled
          */
@@ -340,6 +352,7 @@ public class TabLayout extends HorizontalScrollView {
 
         /**
          * Called when the scroll state changes
+         *
          * @param state
          */
         @Override
@@ -350,6 +363,7 @@ public class TabLayout extends HorizontalScrollView {
                 viewPagerPageChangeListener.onPageScrollStateChanged(state);
             }
         }
+
         /**
          * Called when select on page
          */

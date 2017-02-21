@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Search / will display always -->
+    <item android:id="@+id/action_search"
+        android:icon="@drawable/ic_advertising"
+        android:title="@string/action_search" />
+
+    <!-- Location Found -->
+    <item android:id="@+id/action_location_found"
+        android:icon="@drawable/ic_add"
+        android:title="add"
+        android:showAsAction="ifRoom"
+        tools:ignore="AppCompatResource" />
+
+</menu>

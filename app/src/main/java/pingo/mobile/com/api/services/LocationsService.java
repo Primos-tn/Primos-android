@@ -17,7 +17,7 @@ import rx.Observable;
  * Asynchronous execution requires the last parameter of the method be a Callback
  */
 public interface LocationsService {
-    @GET("/Products")
+    @GET("/locations")
     Observable<LocationsApiResponse> getList(@Query("page") int page,
                                             @Query("limit") int limit,
                                             @Query("query") String searchQuery,

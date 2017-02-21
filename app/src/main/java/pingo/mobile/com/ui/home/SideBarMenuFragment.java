@@ -18,13 +18,14 @@ import pingo.mobile.com.R;
 import pingo.mobile.com.ui.account.LoginActivity;
 import pingo.mobile.com.activities.TourActivity;
 import pingo.mobile.com.ui.brands.activities.BrandsActivity;
+import pingo.mobile.com.ui.common.Dialogs;
 import pingo.mobile.com.ui.common.SideBarMenuItemOpenedListener;
 import pingo.mobile.com.utils.constants.Bundles;
 import pingo.mobile.com.ui.user.activities.ProfileActivity;
 import pingo.mobile.com.utils.storage.Preferences;
 import pingo.mobile.com.ui.user.activities.SettingsActivity;
 import pingo.mobile.com.stores.AccountsStore;
-import pingo.mobile.com.ui.brands.activities.BrandsMineActivity;
+import pingo.mobile.com.ui.user.activities.FavoritesActivity;
 
 /**
  * Created by houssem.fathallah on 03/10/2016.
@@ -35,12 +36,7 @@ public class SideBarMenuFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (Preferences.getInstance(getContext()).isLoggedIn()) {
-            view = inflater.inflate(R.layout.main_menu_in, container, false);
-        } else {
-            view = inflater.inflate(R.layout.main_menu_out, container, false);
-        }
-
+        view = inflater.inflate(R.layout.main_side_bar_menu, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -51,13 +47,17 @@ public class SideBarMenuFragment extends Fragment {
         startActivity(intent);
         sideBarMenuItemOpenedListener.onItemOpened();
     }
+
     /**
      *
      */
-    @OnClick(R.id.profile_menu_id)
+    @OnClick(R.id.favorites_menu_id)
     void Favorites() {
-        Intent intent = new Intent(getContext(), BrandsMineActivity.class);
-        startActivity(intent);
+        if (!Preferences.getInstance(getContext()).isLoggedIn()) {
+            startActivity(new Intent(getContext(), FavoritesActivity.class));
+        } else {
+            Dialogs.openLogin(getContext(), LoginActivity.class);
+        }
         sideBarMenuItemOpenedListener.onItemOpened();
     }
 
@@ -67,8 +67,11 @@ public class SideBarMenuFragment extends Fragment {
      */
     @OnClick(R.id.profile_menu_id)
     void profile() {
-        Intent intent = new Intent(getContext(), ProfileActivity.class);
-        startActivity(intent);
+        if (!Preferences.getInstance(getContext()).isLoggedIn()) {
+            startActivity(new Intent(getContext(), ProfileActivity.class));
+        } else {
+            Dialogs.openLogin(getContext(), LoginActivity.class);
+        }
         sideBarMenuItemOpenedListener.onItemOpened();
     }
 
@@ -94,6 +97,7 @@ public class SideBarMenuFragment extends Fragment {
         getActivity().finish();
         sideBarMenuItemOpenedListener.onItemOpened();
     }
+
     /**
      *
      */
@@ -109,6 +113,6 @@ public class SideBarMenuFragment extends Fragment {
     }
 
     public void setSideBarMenuItemOpenedListener(SideBarMenuItemOpenedListener sideBarMenuItemOpenedListener) {
-        this.sideBarMenuItemOpenedListener = sideBarMenuItemOpenedListener ;
+        this.sideBarMenuItemOpenedListener = sideBarMenuItemOpenedListener;
     }
 }

@@ -82,5 +82,6 @@
     <string name="hint">Hint</string>
     <string name="title_activity_register">Register</string>
     <string name="follow">Follow</string>
+    <string name="action_search">Search</string>
 
 </resources>

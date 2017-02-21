@@ -15,4 +15,6 @@ public interface FilterOptionsViewListener {
 
     public abstract void onFilterReset();
 
+
+
 }

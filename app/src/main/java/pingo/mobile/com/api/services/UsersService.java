@@ -25,7 +25,7 @@ import rx.Observable;
 public interface UsersService {
     @GET("/users")
     void getUsers(Callback<List<User>> apiCallBack);
-    @GET("/users/{id}/Brands/")
+    @GET("/users/{id}/brands/")
     Observable<List<BrandShortInfo>> getBrands(@Path("id") int id, @Query("page") int page, @Query("limit") int limit);
 
     @GET("/users/{id}/followers/")

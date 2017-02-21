@@ -3,6 +3,9 @@ package pingo.mobile.com.utils.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
+
 import pingo.mobile.com.utils.constants.Application;
 import pingo.mobile.com.utils.constants.Locale;
 
@@ -19,7 +22,6 @@ public class Preferences {
     int PRIVATE_MODE = 0;
 
     /**
-     *
      * @param context
      * @return
      */
@@ -30,8 +32,10 @@ public class Preferences {
         instance = new Preferences(context);
         return instance;
     }
+
     /**
      * Note you need to be sure that it's loaded
+     *
      * @return
      */
     public static Preferences getInstance() {
@@ -39,7 +43,6 @@ public class Preferences {
     }
 
     /**
-     *
      * @param context
      */
     public Preferences(Context context) {
@@ -86,7 +89,7 @@ public class Preferences {
      * @return
      */
     public boolean isLoggedIn() {
-        return pref.getBoolean(PreferencesConstants.IS_LOGGED_IN, true);
+        return pref.getBoolean(PreferencesConstants.IS_LOGGED_IN, false);
 
     }
 
@@ -144,6 +147,7 @@ public class Preferences {
     public String getLasActiveActivity() {
         return pref.getString(PreferencesConstants.LAST_ACTIVE_ACTIVITY, "");
     }
+
     /**
      *
      */
@@ -181,10 +185,30 @@ public class Preferences {
     public String setLocale(String locale) {
         return pref.getString(PreferencesConstants.USER_LOCALE, null);
     }
+
     /**
      *
      */
     public String getLocale() {
         return pref.getString(PreferencesConstants.USER_LOCALE, Locale.EN);
+    }
+
+    /**
+     * @param lastLocation
+     */
+    public void setLastUserLocationMovedTo(LatLng lastLocation) {
+        Gson gson = new Gson();
+        String json = gson.toJson(lastLocation);
+        editor.putString(PreferencesConstants.USER_LAST_LOCATION_MOVED, json);
+        editor.commit();
+    }
+
+    /**
+     * @return
+     */
+    public LatLng getLastUserLocationMovedTo() {
+        Gson gson = new Gson();
+        String json = pref.getString(PreferencesConstants.USER_LAST_LOCATION_MOVED, "");
+        return gson.fromJson(json, LatLng.class);
     }
 }

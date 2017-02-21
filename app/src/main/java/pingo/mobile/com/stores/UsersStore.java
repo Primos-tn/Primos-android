@@ -1,5 +1,7 @@
 package pingo.mobile.com.stores;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.List;
 
 import pingo.mobile.com.api.models.BrandShortInfo;
@@ -48,5 +50,9 @@ public class UsersStore {
         RestAdapter restAdapter = CommonRestApiService.getRestAdapter();
         UsersService service = restAdapter.create(UsersService.class);
         return service.getBrands(userId, page, Api.API_LIST_PAGE_LIMIT);
+    }
+
+    public static void updateNearInterests(LatLng center) {
+
     }
 }

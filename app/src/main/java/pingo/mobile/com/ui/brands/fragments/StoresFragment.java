@@ -14,17 +14,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
 import pingo.mobile.com.R;
+import pingo.mobile.com.api.models.Location;
 import pingo.mobile.com.api.models.Store;
+import pingo.mobile.com.api.responses.BrandLocationsApiResponse;
 import pingo.mobile.com.api.services.BrandsService;
 import pingo.mobile.com.api.services.CommonRestApiService;
+import pingo.mobile.com.utils.constants.Bundles;
 import pingo.mobile.com.utils.storage.Preferences;
 import retrofit.RestAdapter;
 import rx.Observer;
@@ -40,31 +47,21 @@ public class StoresFragment extends Fragment {
      * @return
      */
     MapView mMapView;
+    int brandId;
     public static StoresFragment storesFragment;
     private GoogleMap googleMap;
 
-    // newInstance constructor for creating fragment with arguments
-    public static StoresFragment newInstance(int page, String title) {
-        if (storesFragment == null) {
-            storesFragment = new StoresFragment();
-            Bundle args = new Bundle();
-            args.putInt("someInt", page);
-            args.putString("someTitle", title);
-            storesFragment.setArguments(args);
-        }
-        return storesFragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        brandId = this.getArguments().getInt(Bundles.OPENED_BRAND_ID);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.map_fragment, container, false);
-        /*
+        View view = inflater.inflate(R.layout.brand_stores_map_fragment, container, false);
         mMapView = (MapView) view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
 
@@ -94,8 +91,18 @@ public class StoresFragment extends Fragment {
                 loadLatLng();
             }
         });
-        */
         return view;
+    }
+
+    /**
+     * @param locations
+     */
+    public void drawStores(List<Location> locations) {
+        int i = 0;
+        for (Location location : locations) {
+            addMarker(35.2 + i, 10.2 + i++, location.getName());
+        }
+
     }
 
     /**
@@ -122,10 +129,10 @@ public class StoresFragment extends Fragment {
         RestAdapter restAdapter = CommonRestApiService.getRestAdapter();
         BrandsService service = restAdapter.create(BrandsService.class);
         service
-                .getStores(Preferences.getInstance(getContext()).getCurrentBrandId())
+                .getLocations(brandId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<List<Store>>() {
+                .subscribe(new Observer<BrandLocationsApiResponse>() {
                     @Override
                     public void onCompleted() {
 
@@ -137,8 +144,8 @@ public class StoresFragment extends Fragment {
                     }
 
                     @Override
-                    public void onNext(List<Store> stores) {
-
+                    public void onNext(BrandLocationsApiResponse brandLocationsApiResponse) {
+                        drawStores(brandLocationsApiResponse.getLocations());
                     }
                 });
     }

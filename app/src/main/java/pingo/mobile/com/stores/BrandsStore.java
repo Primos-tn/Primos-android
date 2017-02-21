@@ -13,6 +13,7 @@ import pingo.mobile.com.api.services.BrandsService;
 import pingo.mobile.com.api.services.CommonRestApiService;
 import pingo.mobile.com.api.services.ProductsService;
 import retrofit.RestAdapter;
+import rx.Completable;
 import rx.Observable;
 import rx.Observer;
 
@@ -43,6 +44,9 @@ public class BrandsStore {
         return BrandsStore.getBrands(0, API_LIST_PAGE_LIMIT);
     }
 
+    public static Observable<BrandsApiResponse> getUserBrands(int page, int userId) {
+        return BrandsStore.getBrands(0, API_LIST_PAGE_LIMIT);
+    }
 
     /**
      * @return
@@ -57,7 +61,7 @@ public class BrandsStore {
      */
     public static Observable<BrandsApiResponse> getBrands(int page, int limit) {
         Observable<BrandsApiResponse> list = getBrandsServiceInstance()
-                .getBrands(page, limit, null, null);
+                .getBrands(page, limit, null, null, null, 0);
         list.subscribe(new Observer<BrandsApiResponse>() {
             @Override
             public void onCompleted() {
@@ -78,4 +82,5 @@ public class BrandsStore {
 
         return list;
     }
+
 }

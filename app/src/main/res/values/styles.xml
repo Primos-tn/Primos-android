@@ -30,4 +30,13 @@
         <item name="android:layout_margin">10dp</item>
         <item name="android:background">@color/ColorPrimary</item>
     </style>
+
+    <style name="PreferenceScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="android:textColor">#ffffff</item>-->
+        <!--<item name="android:textColorPrimary">#ffffff</item>-->
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimary</item>
+        <item name="colorAccent">@color/BaseColor</item>
+        <!--<item name="android:background">#CCCCCC</item>-->
+    </style>
 </resources>

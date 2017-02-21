@@ -46,4 +46,8 @@ public final class PreferencesConstants {
      *
      */
     public static final String USER_LOCALE = "LAST_PUSH_TOKEN_VALUE";
+    /**
+     *
+     */
+    public static final String  USER_LAST_LOCATION_MOVED = "USER_LAST_LOCATION_MOVED";
 }

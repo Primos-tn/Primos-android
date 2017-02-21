@@ -5,23 +5,34 @@
  * (c) Pingo tn
  * Layout manager that allows the user to flip left and right through pages of data.
  */
-package pingo.mobile.com.ui.brands.fragments;
+package pingo.mobile.com.ui.user;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
+
 import pingo.mobile.com.R;
+import pingo.mobile.com.ui.brands.fragments.MineFragment;
 import pingo.mobile.com.ui.common.BasePagerAdapter;
+import pingo.mobile.com.ui.user.fragments.PreferencesFragment;
 
 /**
  *
  */
-public class ProfilePagerAdapter extends BasePagerAdapter {
-    private final int brandId;
+public class UserProfilePagerAdapter extends BasePagerAdapter {
     /**
      * This will Store the titles of the Tabs which are Going to be passed when HomePagerAdapter is created
      */
     CharSequence titles[];
+
+    private int[] drawables = {
+            R.drawable.ic_bubble_black,
+            R.drawable.ic_near_me
+    };
+    private int[] drawablesOffs = {
+            R.drawable.ic_bubble_white,
+            R.drawable.ic_near_me
+    };
     /**
      * Store the number of tabs, this will also be passed when the HomePagerAdapter is created
      */
@@ -30,11 +41,9 @@ public class ProfilePagerAdapter extends BasePagerAdapter {
     /**
      * Build a Constructor and assign the passed Values to appropriate values in the class
      */
-    public ProfilePagerAdapter(int brandId, FragmentManager fm, CharSequence titles[], int numbOfTabsumb) {
+    public UserProfilePagerAdapter(FragmentManager fm, CharSequence titles[]) {
         super(fm);
         this.titles = titles;
-        this.brandId = brandId;
-        this.numboftabs = numbOfTabsumb;
 
     }
 
@@ -45,13 +54,10 @@ public class ProfilePagerAdapter extends BasePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-
             case 0:
-                return new InfoFragment();
+                return new MineFragment();
             case 1:
-                return new ProductsFragment();
-            case 2:
-                return new StoresFragment();
+                return new PreferencesFragment();
             default:
                 return null;
 
@@ -74,12 +80,16 @@ public class ProfilePagerAdapter extends BasePagerAdapter {
      */
     @Override
     public int getCount() {
-        return numboftabs;
+        return 2;
     }
 
     @Override
     public int getDrawableId(int i) {
-        return R.drawable.ic_favorite;
+        return drawables[i];
+    }
+    @Override
+    public int getDrawableOffId(int i) {
+        return drawablesOffs[i];
     }
 
 }

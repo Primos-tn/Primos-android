@@ -13,17 +13,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.Brand;
 
 /**
  *
  */
-public class HeaderFragment extends Fragment implements View.OnClickListener {
+public class HeaderFragment extends Fragment{
     /**
      * Default oncerateView function.
      * @param inflater
@@ -35,31 +31,6 @@ public class HeaderFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.brand_profile_header_fragment, container, false);
-        brandNameTextView = (TextView)view.findViewById(R.id.brand_name);
-        LinearLayout followBtn = (LinearLayout)view.findViewById(R.id.relation_container_id);
-
-        followBtn.setOnClickListener(this);
-        return view;
-    }
-
-    /**
-     *
-     * @param brand
-     */
-    public void setBrand(Brand brand) {
-        // do something in fragment
-        brandNameTextView.setText(brand.getName());
-    }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.relation_container_id:
-                Toast.makeText(getActivity(), "following",
-                        Toast.LENGTH_LONG).show();
-                break;
-            default:
-                break;
-        }
+        return inflater.inflate(R.layout.user_profile_header, container, false);
     }
 }
