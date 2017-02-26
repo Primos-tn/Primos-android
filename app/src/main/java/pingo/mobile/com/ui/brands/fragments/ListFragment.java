@@ -6,7 +6,6 @@ import pingo.mobile.com.stores.BrandsStore;
 import pingo.mobile.com.ui.brands.AutoCompleteBrandsAdapter;
 import pingo.mobile.com.ui.brands.BrandsListAdapter;
 import pingo.mobile.com.ui.common.EndlessRecyclerViewScrollListener;
-import pingo.mobile.com.ui.products.ProductsListFragment;
 
 
 import android.app.Fragment;
@@ -20,10 +19,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 

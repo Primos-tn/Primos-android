@@ -25,4 +25,8 @@
     <string name="hint">Hint</string>
     <string name="title_activity_register">تسجيل</string>
     <string name="follow">متابعة</string>
+    <string name="product_gallery">Gallery</string>
+    <string name="product_locations">Locations</string>
+    <string name="product_similar">Similar products</string>
+    <string name="price_range">Range price</string>
 </resources>

@@ -16,14 +16,13 @@ import butterknife.ButterKnife;
 
 import pingo.mobile.com.R;
 import pingo.mobile.com.ui.account.LoginActivity;
-import pingo.mobile.com.activities.TourActivity;
+import pingo.mobile.com.ui.common.activities.TourActivity;
 import pingo.mobile.com.ui.brands.activities.BrandsActivity;
 import pingo.mobile.com.ui.common.Dialogs;
 import pingo.mobile.com.ui.common.SideBarMenuItemOpenedListener;
 import pingo.mobile.com.utils.constants.Bundles;
 import pingo.mobile.com.ui.user.activities.ProfileActivity;
 import pingo.mobile.com.utils.storage.Preferences;
-import pingo.mobile.com.ui.user.activities.SettingsActivity;
 import pingo.mobile.com.stores.AccountsStore;
 import pingo.mobile.com.ui.user.activities.FavoritesActivity;
 
@@ -56,7 +55,7 @@ public class SideBarMenuFragment extends Fragment {
         if (!Preferences.getInstance(getContext()).isLoggedIn()) {
             startActivity(new Intent(getContext(), FavoritesActivity.class));
         } else {
-            Dialogs.openLogin(getContext(), LoginActivity.class);
+            Dialogs.requireLogin(getContext());
         }
         sideBarMenuItemOpenedListener.onItemOpened();
     }
@@ -70,21 +69,13 @@ public class SideBarMenuFragment extends Fragment {
         if (!Preferences.getInstance(getContext()).isLoggedIn()) {
             startActivity(new Intent(getContext(), ProfileActivity.class));
         } else {
-            Dialogs.openLogin(getContext(), LoginActivity.class);
+            Dialogs.requireLogin(getContext());
         }
         sideBarMenuItemOpenedListener.onItemOpened();
     }
 
 
-    /**
-     *
-     */
-    @OnClick(R.id.settings_menu_id)
-    void settings() {
-        Intent intent = new Intent(getContext(), SettingsActivity.class);
-        startActivity(intent);
-        sideBarMenuItemOpenedListener.onItemOpened();
-    }
+
 
     /**
      *

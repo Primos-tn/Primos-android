@@ -36,9 +36,9 @@
     <string name="material_switch_preference_off">Material Switch Summary Off</string>
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_forgot_password">Password</string>
-    <string name="product_item_card_action_remind">Remind Me</string>
+    <string name="product_item_popup_menu_report_text">Report</string>
     <string name="product_item_card_action_share">Share</string>
-    <string name="product_item_card_action_get_coupon">Get coupon</string>
+    <string name="product_item_popup_menu_get_coupons_text">Get coupon</string>
     <string name="backdrop_subtitle">This season top 20 albums</string>
     <string name="header_name">hello</string>
 
@@ -83,5 +83,9 @@
     <string name="title_activity_register">Register</string>
     <string name="follow">Follow</string>
     <string name="action_search">Search</string>
+    <string name="product_gallery">Gallery</string>
+    <string name="product_locations">Locations</string>
+    <string name="product_similar">Similar products</string>
+    <string name="price_range">Range price</string>
 
 </resources>

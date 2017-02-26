@@ -86,8 +86,19 @@ public class ProductsListAdapter extends RecyclerView
                                     .getSmallThumbnail()
                                     .getUrl()))
             );
-            holder.count.setText(product.getProductInfo().getName());
-            holder.addImages(mContext, product.getPictures());
+            holder.productName.setText(product.getProductInfo().getName());
+            if (product.isInCollection()){
+                holder.highlight.setText("C");
+            }
+            else {
+                holder.highlight.setText("25%");
+            }
+            holder.brandName.setText(product.getBrandShortInfo().getName());
+            holder.votesCount.setText(String.valueOf(product.getProductInfo().getVotesCount()));
+            holder.storesCount.setText(String.valueOf(product.getProductInfo().getStoresCount()));
+            holder.picturesCount.setText(String.valueOf(product.getPictures().size()));
+            //holder.addImagesCount(mContext, product.getPictures());
+            holder.setProductId(product.getId());
         }
     }
 

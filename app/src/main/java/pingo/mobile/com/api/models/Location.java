@@ -6,9 +6,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class Location {
     public String name = "test";
-    private Address address ;
+    public int id;
+    private Address address;
     @SerializedName("brand_id")
-    private int brandId ;
+    private int brandId;
 
     public String getName() {
         return name;

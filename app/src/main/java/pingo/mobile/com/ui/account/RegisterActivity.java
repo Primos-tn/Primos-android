@@ -17,7 +17,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.activities.HomeActivity;
+import pingo.mobile.com.ui.common.activities.HomeAcctivity;
 import pingo.mobile.com.api.models.accounts.SignUpResponse;
 import pingo.mobile.com.stores.AccountsStore;
 import rx.Observer;
@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      * Stop the base activity and start Home Activity
      */
     private void goHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, HomeAcctivity.class);
         startActivity(intent);
         finish();
 

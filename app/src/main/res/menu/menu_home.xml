@@ -1,12 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.products.ProductsHorizontalListFragment">
+    xmlns:appcompat="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.common.activities.HomeAcctivity">
     <item
-        android:id="@+id/action_back"
-        android:icon="@drawable/ic_icon"
+        android:id="@+id/menu_filter"
+        android:icon="@drawable/ic_bubble_white"
+        android:layout_gravity="left"
         android:title="@string/action_settings"
         android:orderInCategory="100"
 
-        app:showAsAction="never" />
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_search"
+        android:title="@string/action_search"
+        appcompat:actionViewClass="android.support.v7.widget.SearchView"
+        appcompat:showAsAction="always"/>
 </menu>

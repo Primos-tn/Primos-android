@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/component_header_title"
                 android:gravity="center"
-                android:text="@string/include_geo" />
+                android:text="@string/price_range" />
             <SeekBar
                 android:id="@+id/sbBar"
                 android:layout_width="match_parent"

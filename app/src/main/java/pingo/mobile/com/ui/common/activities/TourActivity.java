@@ -1,4 +1,4 @@
-package pingo.mobile.com.activities;
+package pingo.mobile.com.ui.common.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -46,7 +46,6 @@ public class TourActivity extends AppCompatActivity {
         if (b != null) {
             sourceCall = b.getString(Bundles.TOUR_SOURCE_CALL_KEY);
         }
-
         // check is first launch
         if (!prefManager.isFirstTimeLaunch()) {
             launchHomeScreen();

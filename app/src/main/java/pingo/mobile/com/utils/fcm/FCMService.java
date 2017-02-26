@@ -13,7 +13,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.activities.HomeActivity;
+import pingo.mobile.com.ui.common.activities.HomeAcctivity;
 
 /**
  * Copyright 2016 Google Inc. All Rights Reserved.
@@ -79,7 +79,7 @@ public class FCMService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, HomeAcctivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);

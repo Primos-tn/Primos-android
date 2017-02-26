@@ -2,31 +2,23 @@ package pingo.mobile.com.ui.products;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.facebook.drawee.generic.RoundingParams;
-import com.facebook.drawee.view.SimpleDraweeView;
-
-import java.util.List;
-import java.util.StringTokenizer;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.Picture;
-import pingo.mobile.com.api.models.PictureFile;
-
-import static pingo.mobile.com.api.routes.common.getMediaUrl;
+import pingo.mobile.com.ui.common.Helpers;
+import pingo.mobile.com.ui.common.Toasts;
+import pingo.mobile.com.ui.products.activities.ProductDetailsActivity;
+import pingo.mobile.com.utils.constants.Bundles;
 
 /**
  *
@@ -34,79 +26,81 @@ import static pingo.mobile.com.api.routes.common.getMediaUrl;
 public class ProductViewHolder extends RecyclerView.ViewHolder
         implements View
         .OnClickListener {
-    public TextView title;
-    public TextView count;
+    public TextView productName, votesCount, picturesCount, storesCount, brandName, highlight;
 
-    @BindView(R.id.home_product_card_view_item_menu_id)
-    ImageView menuItem;
 
     @BindView(R.id.brand_thumbnail)
-    public ImageView brandThumbnail;
+    ImageView brandThumbnail;
 
     @BindView(R.id.thumbnail)
-    public ImageView thumbnail;
+    ImageView thumbnail;
 
+    @BindView(R.id.remind_btn)
+    ImageView remindButton;
 
-    @BindView(R.id.thumbnails)
-    public LinearLayout listViewImagesCollection;
+    private int productId;
+
+    @OnClick(R.id.thumbnail)
+    public void onThumbnailClick(View v) {
+        Intent intent = new Intent(v.getContext(), ProductDetailsActivity.class);
+        Bundle mBundle = new Bundle();
+        mBundle.putInt(Bundles.OPENED_PRODUCT_ID, this.productId);
+        intent.putExtras(mBundle);
+        v.getContext().startActivity(intent);
+    }
 
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
      */
     public ProductViewHolder(View itemView) {
         super(itemView);
-        title = (TextView) itemView.findViewById(R.id.title);
-        count = (TextView) itemView.findViewById(R.id.count);
+        productName = (TextView) itemView.findViewById(R.id.product_name);
+        votesCount = (TextView) itemView.findViewById(R.id.votes_count);
+        storesCount = (TextView) itemView.findViewById(R.id.stores_count);
+        picturesCount = (TextView) itemView.findViewById(R.id.pictures_count);
+        highlight = (TextView) itemView.findViewById(R.id.highlight);
+        brandName = (TextView) itemView.findViewById(R.id.brand_name);
         ButterKnife.bind(this, itemView);
     }
 
     /**
-     *
+     * @param view
      */
-    public void addImages(Context context, List<Picture> pictureFilesList) {
-        // By using setAdpater method in listview we an add string array in list.
-        SimpleDraweeView image;
-        RoundingParams roundingParams = RoundingParams.fromCornersRadius(2f);
-        roundingParams.setCornersRadius(45);
-        int i = 0;
-        LinearLayout.LayoutParams lp;
-        for (Picture picture : pictureFilesList) {
-            image = new SimpleDraweeView(context);
-            image.setImageURI(getMediaUrl(picture.getFile().getSmallThumbnail().getUrl()));
-            image.setMaxHeight(90);
-            image.setMaxWidth(90);
-            image.setMinimumHeight(90);
-            image.setMinimumWidth(90);
-            lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            if (i++ > 0) {
-                lp.setMargins(0xfffffff6, 0, 0, 0);
-            } else {
-                lp.setMargins(0, 0, 0, 0);
-            }
-            image.setLayoutParams(lp);
-            image.getHierarchy().setRoundingParams(roundingParams);
-            listViewImagesCollection.addView(image);
-        }
-        if (pictureFilesList.size() > 0) {
-            TextView textView = new TextView(context);
-            textView.setText("+" + String.valueOf(pictureFilesList.size()));
-            textView.setAllCaps(true);
-            listViewImagesCollection.addView(textView);
-        }
+    @OnClick(R.id.menu_btn)
+    public void showPopupMenu(View view) {
+        // inflate menu
+        PopupMenu popup = new PopupMenu(view.getContext(), view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_popup_product, popup.getMenu());
+        ProductViewHolderMenuItem productViewHolderMenuItem = new ProductViewHolderMenuItem(view.getContext(), this.productId);
+        popup.setOnMenuItemClickListener(productViewHolderMenuItem);
+        popup.show();
+    }
+
+    /**
+     * @param view
+     */
+    @OnClick(R.id.remind_btn)
+    public void notifyMe(View view) {
+        Context context = view.getContext();
+        String productName = this.productName.getText().toString();
+        Helpers.createReminder(context, productName);
+        Toasts.createShort(context, productName + " Created !");
 
     }
 
     /**
      * @param view
      */
-    @OnClick(R.id.home_product_card_view_item_menu_id)
-    public void showPopupMenu(View view) {
-        // inflate menu
-        PopupMenu popup = new PopupMenu(view.getContext(), view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_popup_product, popup.getMenu());
-        popup.setOnMenuItemClickListener(new ProductViewHolderMenuItem());
-        popup.show();
+    @OnClick(R.id.share_btn)
+    public void shareMe(View view) {
+        Context context = view.getContext();
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "Check before the end of day";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Primos");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        context.startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
     /**
@@ -125,5 +119,9 @@ public class ProductViewHolder extends RecyclerView.ViewHolder
                 break;
         }
 
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

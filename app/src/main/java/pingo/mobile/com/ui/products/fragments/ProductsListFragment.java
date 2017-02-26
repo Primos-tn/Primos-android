@@ -1,4 +1,4 @@
-package pingo.mobile.com.ui.products;
+package pingo.mobile.com.ui.products.fragments;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +17,7 @@ import pingo.mobile.com.api.models.Product;
 import pingo.mobile.com.api.responses.ProductsApiResponse;
 import pingo.mobile.com.stores.ProductsStore;
 import pingo.mobile.com.ui.common.EndlessRecyclerViewScrollListener;
+import pingo.mobile.com.ui.products.ProductsListAdapter;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -112,8 +113,8 @@ public class ProductsListFragment extends Fragment {
                         mAdapter.addItems(products.getProductsList());
                         /*
                         // Prepare next fetch
-                        LoadingViewHolder view = ((LoadingViewHolder) recyclerView.getLayoutManager().findViewByPosition(count - 1).getTag()) ;
-                        if (count > 80){
+                        LoadingViewHolder view = ((LoadingViewHolder) recyclerView.getLayoutManager().findViewByPosition(votesCount - 1).getTag()) ;
+                        if (votesCount > 80){
                             mAdapter.setMustBeReloadedNextFetch(true);
                             view.switchView(false);
                         }

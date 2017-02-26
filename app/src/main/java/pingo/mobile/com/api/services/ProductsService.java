@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import pingo.mobile.com.api.models.Picture;
+import pingo.mobile.com.api.models.Product;
+import pingo.mobile.com.api.models.ProductDetails;
 import pingo.mobile.com.api.routes.Products;
 import pingo.mobile.com.api.models.ProductVoteResponse;
 import pingo.mobile.com.api.models.User;
@@ -39,9 +41,16 @@ public interface ProductsService {
     @GET(Products.PRODUCT_LOCATIONS)
     Observable<LocationsApiResponse> getAvailableLocations(@Path("id") int id);
 
-    @POST(Products.PRODUCT_VOTERS)
+
+    @GET(Products.PRODUCT_DETAILS)
+    Observable<ProductDetails> getProduct(@Path("id") int id);
+
+    @GET(Products.PRODUCT_VOTERS)
     Observable<List<User>> getVoters(@Query("page") int page);
 
+
+    @GET(Products.PRODUCT_PICTURES)
+    Observable<List<Picture>> getFullPictures(@Path("id") int id);
 
     @POST(Products.PRODUCT_VOTE)
     Observable<ProductVoteResponse> voteProduct(@Path("id") int id);
@@ -49,6 +58,4 @@ public interface ProductsService {
     @POST(Products.PRODUCT_UNVOTE)
     Observable<ProductVoteResponse> unVoteProduct(@Path("id") int id);
 
-    @GET(Products.PRODUCT_PICTURES)
-    Observable<List<Picture>> getFullPictures(@Path("id") int id);
 }

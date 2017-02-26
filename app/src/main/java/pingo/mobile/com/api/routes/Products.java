@@ -9,6 +9,7 @@ public class Products {
      *
      */
     public static final String PRODUCTS_LIST = "/products/";
+    public static final String PRODUCT_DETAILS = "/products/{id}/";
     public static final String PRODUCT_LOCATIONS = "/products/{id}/stores/";
     public static final String PRODUCT_VOTERS = "/products/{id}/voters/";
     public static final String PRODUCT_VOTE = "/products/{id}/vote/";

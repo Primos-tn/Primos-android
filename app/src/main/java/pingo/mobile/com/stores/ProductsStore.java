@@ -5,11 +5,14 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 
+import pingo.mobile.com.api.models.ProductDetails;
 import pingo.mobile.com.api.models.SearchParamsOptions;
 import pingo.mobile.com.api.models.Product;
 import pingo.mobile.com.api.models.Picture;
+import pingo.mobile.com.api.models.User;
 import pingo.mobile.com.api.responses.LocationsApiResponse;
 import pingo.mobile.com.api.responses.ProductsApiResponse;
+import pingo.mobile.com.api.routes.Products;
 import pingo.mobile.com.api.services.CommonRestApiService;
 import pingo.mobile.com.api.services.ProductsService;
 import pingo.mobile.com.utils.constants.Api;
@@ -25,6 +28,18 @@ import static pingo.mobile.com.utils.constants.Api.getApiMaxPageLimit;
  */
 public class ProductsStore {
     static List<Product> productList = new ArrayList<>();
+    static ProductsService productsServiceInstance = null;
+
+    /**
+     * @return
+     */
+    public static ProductsService getBrandsServiceInstance() {
+        if (productsServiceInstance == null) {
+            productsServiceInstance = CommonRestApiService.getRestAdapter().create(ProductsService.class);
+        }
+        return productsServiceInstance;
+    }
+
 
     /**
      * @return
@@ -33,12 +48,14 @@ public class ProductsStore {
         SearchParamsOptions.getInstance().setLocationQueryString(center, distance);
         return ProductsStore.getProducts(0, Api.API_MAX_PAGE_LIMIT);
     }
+
     /**
      * @return
      */
     public static Observable<ProductsApiResponse> getProducts(int page) {
         return ProductsStore.getProducts(0, API_LIST_PAGE_LIMIT);
     }
+
     /**
      * @param productId
      * @return
@@ -66,7 +83,7 @@ public class ProductsStore {
     public static Observable<ProductsApiResponse> getProducts(int page, int limit) {
         RestAdapter restAdapter = CommonRestApiService.getRestAdapter();
         ProductsService service = restAdapter.create(ProductsService.class);
-        SearchParamsOptions filterOptions = SearchParamsOptions.getInstance() ;
+        SearchParamsOptions filterOptions = SearchParamsOptions.getInstance();
         Observable<ProductsApiResponse> list = service.getList(
                 page,
                 limit,
@@ -112,6 +129,14 @@ public class ProductsStore {
      */
     public static List<Product> getLoadedProducts() {
         return productList;
+    }
+
+
+    /**
+     * @return
+     */
+    public static Observable<ProductDetails> getProduct(int id) {
+        return getBrandsServiceInstance().getProduct(id);
     }
 
     /**

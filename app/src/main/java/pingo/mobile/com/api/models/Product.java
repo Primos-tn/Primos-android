@@ -55,6 +55,13 @@ public class Product {
     }
 
     /**
+     * @return
+     */
+    public boolean isInCollection() {
+        return true;
+    }
+
+    /**
      *
      */
     public class ProductInfo {
@@ -124,6 +131,18 @@ public class Product {
             return couponsCounts;
         }
 
+        /**
+         *
+         * @return
+         */
+        public int getStoresCount() {
+            return 2;
+        }
+
+        /**
+         *
+         * @return
+         */
         public int getAvailableCount() {
             return availableCount;
         }
@@ -135,8 +154,9 @@ public class Product {
         public String getName() {
             return name;
         }
-        public Boolean inCollection (){
-            return true ;
+
+        public Boolean inCollection() {
+            return true;
         }
     }
 }

@@ -1,4 +1,4 @@
-package pingo.mobile.com.activities;
+package pingo.mobile.com.ui.common.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import pingo.mobile.com.ui.account.LoginActivity;
 import pingo.mobile.com.ui.user.activities.FavoritesActivity;
 
 /**
@@ -13,15 +14,15 @@ import pingo.mobile.com.ui.user.activities.FavoritesActivity;
  */
 
 public class Dialogs {
-    public static void openLogin(final Context context, final Class activityClass) {
+    public static void requireLogin(final Context context) {
         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Alert");
-        alertDialog.setMessage("Alert message to be shown");
+        alertDialog.setTitle("Login");
+        alertDialog.setMessage("This interface require a login or account creation");
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        context.startActivity(new Intent(context, activityClass));
+                        context.startActivity(new Intent(context, LoginActivity.class));
                     }
                 });
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL",

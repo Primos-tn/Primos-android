@@ -5,7 +5,7 @@
  * (c) Pingo tn
  * Fragment code of the fourth Tab
  */
-package pingo.mobile.com.ui.products;
+package pingo.mobile.com.ui.products.fragments;
 
 import android.animation.IntEvaluator;
 import android.animation.ValueAnimator;
