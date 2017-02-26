@@ -1,5 +1,5 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
-    android:name="pingo.mobile.com.ui.user.fragments.ContainerFragment"
+    android:name="pingo.mobile.com.ui.user.fragments.ProfileContainerFragment"
     tools:layout="@layout/user_profile_base_fragment"
     android:layout_width="match_parent" android:layout_height="match_parent" />

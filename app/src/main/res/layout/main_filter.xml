@@ -12,7 +12,7 @@
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/main_filter_fragment"
-        android:name="pingo.mobile.com.ui.home.MainFragmentFilter"
+        android:name="pingo.mobile.com.ui.home.fragments.MainFragmentFilter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:tag="@string/main_filter_fragment_tag" />

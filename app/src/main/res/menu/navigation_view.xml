@@ -6,13 +6,13 @@
             android:icon="@drawable/ic_hot_white"
             android:title="Home" />
         <item
-            android:id="@+id/nav_trends"
+            android:id="@+id/nav_brands"
             android:icon="@drawable/ic_advertising"
-            android:title="Trends" />
+            android:title="Brands" />
         <item
-            android:id="@+id/nav_favorites"
-            android:icon="@drawable/ic_bubble_white"
-            android:title="Favorites" />
+            android:id="@+id/nav_my_brands"
+            android:icon="@drawable/ic_favorite_white"
+            android:title="My brands" />
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_perm_identity_white"

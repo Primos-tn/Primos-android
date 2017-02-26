@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.account.RegisterActivity"
     >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_loading"/>
+
     <ScrollView
         android:id="@+id/ScrollView1"
         android:layout_width="fill_parent"
@@ -23,7 +29,7 @@
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="4dip"
             android:layout_centerInParent="true"
             />
 
@@ -31,67 +37,67 @@
             android:id="@+id/register_username_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="4dip"
             android:background="@drawable/input_corner"
             android:hint="@string/username"
             android:padding="12dp"
-            android:textColor="@color/ColorPrimary"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:textColorHint="@color/ColorPrimary" />
+            android:textColor="@color/WhiteColor"
+            android:layout_margin="@dimen/register_element_margin"
+            android:textColorHint="@color/WhiteColor" />
 
         <EditText
             android:id="@+id/register_email_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="4dip"
             android:background="@drawable/input_corner"
-            android:hint="@string/username"
+            android:hint="@string/email"
             android:padding="12dp"
-            android:textColor="@color/ColorPrimary"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:textColorHint="@color/ColorPrimary" />
+            android:textColor="@color/WhiteColor"
+            android:layout_margin="@dimen/register_element_margin"
+            android:textColorHint="@color/WhiteColor" />
 
         <EditText
             android:id="@+id/register_age_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:layout_marginBottom="8dip"
+            android:layout_marginBottom="4dip"
             android:background="@drawable/input_corner"
             android:hint="@string/age"
             android:padding="12dp"
             android:inputType="numberDecimal"
-            android:textColor="@color/ColorPrimary"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:textColorHint="@color/ColorPrimary" />
+            android:textColor="@color/WhiteColor"
+            android:layout_margin="@dimen/register_element_margin"
+            android:textColorHint="@color/WhiteColor" />
 
         <EditText
             android:id="@+id/register_password_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:layout_marginBottom="8dip"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="4dip"
+            android:layout_margin="@dimen/register_element_margin"
             android:background="@drawable/input_corner"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:textColor="@color/ColorPrimary"
-            android:textColorHint="@color/ColorPrimary" />
+            android:textColor="@color/WhiteColor"
+            android:textColorHint="@color/WhiteColor" />
         <EditText
             android:id="@+id/register_password_confirmation_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:layout_marginBottom="8dip"
-            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="4dip"
+            android:layout_margin="@dimen/register_element_margin"
             android:background="@drawable/input_corner"
             android:hint="@string/password_confirmation"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:textColor="@color/ColorPrimary"
-            android:textColorHint="@color/ColorPrimary" />
+            android:textColor="@color/WhiteColor"
+            android:textColorHint="@color/WhiteColor" />
         <Button
             android:id="@+id/register_register_button"
             android:layout_width="wrap_content"
@@ -100,9 +106,9 @@
             android:gravity="center"
             android:padding="12dp"
             android:text="@string/go_register"
-            android:textColor="@color/ColorPrimary" />
+            android:textColor="@color/WhiteColor" />
         <Spinner
-            android:background="@color/ColorPrimary"
+            android:background="@color/WhiteColor"
             android:id="@+id/loading_progress"
             android:layout_margin="15dp"
             android:layout_width="match_parent"
@@ -120,7 +126,7 @@
                 android:gravity="center"
                 android:padding="12dp"
                 android:text="@string/login"
-                android:textColor="@color/ColorPrimary" />
+                android:textColor="@color/WhiteColor" />
 
         </LinearLayout>
 

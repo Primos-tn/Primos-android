@@ -64,8 +64,7 @@ public class ProductProfileDetailsFragment extends Fragment implements View.OnCl
         productId = getActivity().getIntent().getExtras().getInt(Bundles.OPENED_PRODUCT_ID);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(android.R.color.transparent);
-        actionBar.setDisplayUseLogoEnabled(false);
+        actionBar.setTitle(getResources().getString(R.string.product));
         /**
          * Assigning ViewPager View and setting the adapter
          */
@@ -80,6 +79,9 @@ public class ProductProfileDetailsFragment extends Fragment implements View.OnCl
         return view;
     }
 
+    /**
+     * @param view
+     */
     private void configureSimilarLayout(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.similar_products_recycler_view);
 
@@ -169,23 +171,6 @@ public class ProductProfileDetailsFragment extends Fragment implements View.OnCl
 
     }
 
-
-    /**
-     * @param
-     */
-    void getSimilarProducts(ProductDetails product) {
-        // headerFragment.setBrand(brand);
-        /*Log.d("sender", "Broadcasting message");
-        Intent intent = new Intent(Bundles.BRAND_INFO_MESSAGE_RECEIVER);
-        // You can also include some extra data.
-        intent.putExtra(Bundles.BRAND_PARCELABLE_KEY, brand);
-        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(intent);*/
-        name.setText(product.getName());
-        votesCount.setText(String.valueOf(product.getVotesCount()));
-        locationsCount.setText(String.valueOf(product.getStoresCount()));
-        productDetailsPicturesPagerAdapter.setPictureFiles((ArrayList<Picture>) product.getPictures());
-
-    }
 
     @Override
     public void onClick(View v) {

@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:tag="@string/fragment_tag"-->
-    <!--android:id="@+id/brand_profile_header_fragment"-->
-    <!--android:name="pingo.mobile.com.ui.user.fragments.HeaderFragment"-->
-    <!--tools:layout="@layout/brand_profile_header_fragment"-->
-
-    <!--android:layout_width="match_parent" android:layout_height="200dip" />-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="50dip"
-        android:text="Hello There"
-        android:textAlignment="center"/>
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="50dip"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
-
-        <pingo.mobile.com.ui.common.TabLayout
-            android:id="@+id/tabs"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            style="@style/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_profile_account_preference_title" />
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/profile_preferences_fragment"
+            android:name="pingo.mobile.com.ui.user.fragments.ProfilePreferencesFragment"
             android:layout_width="match_parent"
-            android:layout_height="50dip"
-            app:tabIndicatorColor="@color/ColorPrimary"
-            android:background="@color/ColorPrimary" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
+            android:layout_height="wrap_content"
+            android:tag="@string/profile_preferences_fragment_tag" />
+        <TextView
+            style="@style/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_profile_account_info_title" />
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/profile_info_fragment"
+            android:name="pingo.mobile.com.ui.user.fragments.ProfileInfoFragment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content"
+            android:tag="@string/profile_info_fragment_tag"/>
+
     </LinearLayout>
+
+
+
 
 </FrameLayout>

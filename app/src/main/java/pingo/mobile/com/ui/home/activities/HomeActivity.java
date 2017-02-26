@@ -1,5 +1,8 @@
-package pingo.mobile.com.ui.common.activities;
+package pingo.mobile.com.ui.home.activities;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,14 +16,18 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pingo.mobile.com.R;
-import pingo.mobile.com.ui.brands.fragments.ListFragment;
-import pingo.mobile.com.ui.brands.fragments.MineFragment;
-import pingo.mobile.com.ui.home.MainFragment;
-import pingo.mobile.com.ui.user.fragments.ContainerFragment;
+import pingo.mobile.com.ui.brands.activities.BrandsListActivity;
+import pingo.mobile.com.ui.common.activities.TourActivity;
+import pingo.mobile.com.ui.home.fragments.MainFragment;
+import pingo.mobile.com.ui.user.activities.UserBrandsActivity;
+import pingo.mobile.com.ui.user.activities.UserProfileActivity;
 import pingo.mobile.com.ui.user.activities.SettingsActivity;
 import pingo.mobile.com.utils.constants.Bundles;
 import pingo.mobile.com.utils.storage.Preferences;
@@ -31,32 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private DrawerLayout drawerLayout;
     private NavigationView nvDrawer;
-
-
-    /**
-     *
-     */
-    @OnClick(R.id.take_tour)
-    void takeTour() {
-        Preferences.getInstance().setFirstTimeLaunch(true);
-        Intent intent = new Intent(this, TourActivity.class);
-        Bundle bundle = new Bundle();
-        // set it to only
-        bundle.putString(Bundles.TOUR_SOURCE_CALL_KEY, "menu");
-        intent.putExtras(bundle);
-        startActivity(intent);
-        drawerLayout.closeDrawer(Gravity.LEFT);
-    }
-    /**
-     *
-     */
-    @OnClick(R.id.about_us)
-    void aboutUs() {
-        Preferences.getInstance().setFirstTimeLaunch(true);
-        Intent intent = new Intent(this, AboutUsActivity.class);
-        startActivity(intent);
-        drawerLayout.closeDrawer(Gravity.LEFT);
-    }
+    private RelativeLayout mainSearchViewResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,14 +70,46 @@ public class HomeActivity extends AppCompatActivity {
                 mToolbar.setAlpha(1 - slideOffset / 2);
             }
         };
+
+
         actionBarDrawerToggle.syncState();
         mToolbar.setTitle("");
         getSupportActionBar().setTitle("");
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        mToolbar.setNavigationIcon(R.drawable.ic_bubble_white);
+        mToolbar.setNavigationIcon(R.drawable.ic_menu_white);
         setupDrawerContent(nvDrawer);
+        // activate first item
         selectDrawerItem(nvDrawer.getMenu().getItem(0));
+        // get saerch list
+        mainSearchViewResults = (RelativeLayout) findViewById(R.id.main_search_view_results);
+        mainSearchViewResults.setVisibility(View.GONE);
         ButterKnife.bind(this);
+    }
+
+    /**
+     *
+     */
+    @OnClick(R.id.take_tour)
+    void takeTour() {
+        Preferences.getInstance().setFirstTimeLaunch(true);
+        Intent intent = new Intent(this, TourActivity.class);
+        Bundle bundle = new Bundle();
+        // set it to only
+        bundle.putString(Bundles.TOUR_SOURCE_CALL_KEY, "menu");
+        intent.putExtras(bundle);
+        startActivity(intent);
+        drawerLayout.closeDrawer(Gravity.LEFT);
+    }
+
+    /**
+     *
+     */
+    @OnClick(R.id.about_us)
+    void aboutUs() {
+        Preferences.getInstance().setFirstTimeLaunch(true);
+        Intent intent = new Intent(this, AboutUsActivity.class);
+        startActivity(intent);
+        drawerLayout.closeDrawer(Gravity.LEFT);
     }
 
 
@@ -115,7 +129,37 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
-        super.onCreateOptionsMenu(menu);
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(true); // Do not iconify the widget; expand it by default
+        if (searchView != null) {
+//            searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(this, SearchResultsActivity.class)));
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            searchView.setOnCloseListener(new android.widget.SearchView.OnCloseListener() {
+                @Override
+                public boolean onClose() {
+                    mainSearchViewResults.setVisibility(View.GONE);
+                    return false;
+                }
+            });
+            searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    mainSearchViewResults.setVisibility(View.VISIBLE);
+                    //mainSearchViewResults.bringToFront();
+                    return true;
+                }
+            });
+        }
+        //super.onCreateOptionsMenu(menu);
         return true;
     }
 
@@ -125,27 +169,38 @@ public class HomeActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
+        Intent intent;
         Class fragmentClass;
         switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 fragmentClass = MainFragment.class;
                 break;
-            case R.id.nav_trends:
-                fragmentClass = MainFragment.class;
-                break;
-            case R.id.nav_favorites:
-                fragmentClass = MineFragment.class;
-                break;
-            case R.id.nav_profile:
-                fragmentClass = ContainerFragment.class;
-                break;
-            case R.id.nav_settings:
-                Intent intent = new Intent(this, SettingsActivity.class);
+            case R.id.nav_brands:
+                intent = new Intent(this, BrandsListActivity.class);
                 startActivity(intent);
+                closeDrawers();
+                return;
+            case R.id.nav_my_brands:
+                intent = new Intent(this, UserBrandsActivity.class);
+                startActivity(intent);
+                closeDrawers();
+                return;
+            case R.id.nav_profile:
+                intent = new Intent(this, UserProfileActivity.class);
+                startActivity(intent);
+                closeDrawers();
+                return;
+            case R.id.nav_settings:
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                closeDrawers();
                 return;
             default:
                 fragmentClass = MainFragment.class;
         }
+        /**
+         *
+         */
 
         try {
             fragment = (Fragment) fragmentClass.newInstance();
@@ -155,13 +210,26 @@ public class HomeActivity extends AppCompatActivity {
 
         // Insert the fragment by replacing any existing fragment
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container_body, fragment).commit();
+        Fragment alreadyAttached = fragmentManager.findFragmentById(R.id.container_body);
+        if (alreadyAttached != null && alreadyAttached instanceof MainFragment) {
+            closeDrawers();
+        } else {
+            fragmentManager.beginTransaction().replace(R.id.container_body, fragment).commit();
+            closeDrawers();
+        }
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
         // Set action bar productName
         // setTitle(menuItem.getTitle());
         // Close the navigation drawer
+    }
+
+    /**
+     *
+     */
+    void closeDrawers() {
+
         drawerLayout.closeDrawers();
     }
 
@@ -179,4 +247,5 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

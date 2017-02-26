@@ -190,6 +190,8 @@ public class TabLayout extends HorizontalScrollView {
             linearLayout.setMinimumWidth(width);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
             params.height = LayoutParams.MATCH_PARENT;
+            params.width = width ;
+            params.gravity = Gravity.CENTER;
             linearLayout.setLayoutParams(params);
             slidingTabStrip.addView(linearLayout);
         }
@@ -306,7 +308,6 @@ public class TabLayout extends HorizontalScrollView {
         if (tabStripChildCount == 0 || tabIndex < 0 || tabIndex >= tabStripChildCount) {
             return;
         }
-
         View selectedChild = slidingTabStrip.getChildAt(tabIndex);
         if (selectedChild != null) {
             int targetScrollX = selectedChild.getLeft() + positionOffset;

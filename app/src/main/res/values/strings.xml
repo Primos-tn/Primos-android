@@ -87,5 +87,17 @@
     <string name="product_locations">Locations</string>
     <string name="product_similar">Similar products</string>
     <string name="price_range">Range price</string>
+    <string name="home_tab_list">Products</string>
+    <string name="home_tab_map">Map</string>
+    <string name="home_tab_hottest">Hottests</string>
+    <string name="product">Product</string>
+    <string name="email">email</string>
+    <string name="action_search_products">Brands</string>
+    <string name="action_search_brands">Brands</string>
+    <string name="profile_preferences_fragment_tag">profile_preferences_fragment_tag</string>
+    <string name="profile_info_fragment_tag">profile_info_fragment_tag</string>
+    <string name="brands_list_activity_title">Brands</string>
+    <string name="user_profile_account_info_title">Infos</string>
+    <string name="user_profile_account_preference_title">Preferences</string>
 
 </resources>

@@ -29,4 +29,10 @@
     <string name="product_locations">Locations</string>
     <string name="product_similar">Similar products</string>
     <string name="price_range">Range price</string>
+    <string name="home_tab_list">Products</string>
+    <string name="home_tab_map">Map</string>
+    <string name="product">Product</string>
+    <string name="email">email</string>
+    <string name="action_search_products">Brands</string>
+    <string name="action_search_brands">Brands</string>
 </resources>

@@ -13,24 +13,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
 import pingo.mobile.com.R;
 
-/**
- * #FUTURE USAGE
- */
-public class HeaderFragment extends Fragment{
+
+public class ProfileContainerFragment extends Fragment {
+
     /**
      * Default oncerateView function.
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState
      * @return
      */
-    TextView  brandNameTextView ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.user_profile_header, container, false);
+
+        return inflater.inflate(R.layout.user_profile_base_fragment, container, false);
     }
 }

@@ -10,12 +10,13 @@ package pingo.mobile.com.ui.brands.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.WindowManager;
 
 import pingo.mobile.com.R;
 
 
-public class BrandsActivity extends AppCompatActivity {
+public class BrandsListActivity extends AppCompatActivity {
     /**
      * Set Content View main_activity.xml
      */
@@ -25,5 +26,17 @@ public class BrandsActivity extends AppCompatActivity {
         setContentView(R.layout.brands_list);
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

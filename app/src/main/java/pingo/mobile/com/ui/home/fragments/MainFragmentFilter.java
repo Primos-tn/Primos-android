@@ -4,7 +4,7 @@
  * Created by Pingo Team
  * (c) Pingo tn
  */
-package pingo.mobile.com.ui.home;
+package pingo.mobile.com.ui.home.fragments;
 
 import android.os.Build;
 import android.os.Bundle;

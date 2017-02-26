@@ -19,7 +19,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.ui.common.activities.HomeAcctivity;
+import pingo.mobile.com.ui.home.activities.HomeActivity;
 
 
 public class ForgetPasswordActivity extends AppCompatActivity implements View.OnClickListener {
@@ -60,7 +60,7 @@ public class ForgetPasswordActivity extends AppCompatActivity implements View.On
      * Stop the base activity and start Home Activity
      */
     private void goHomeActivity() {
-        Intent intent = new Intent(this, HomeAcctivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
 

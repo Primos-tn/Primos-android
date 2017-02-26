@@ -26,14 +26,15 @@
     </LinearLayout>
 
     <TextView
-        style="@style/TextViewStyle"
+        style="@style/headerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/product_gallery" />
+
     <include layout="@layout/product_details_pictures_collection_view_pager"></include>
 
     <TextView
-        style="@style/TextViewStyle"
+        style="@style/headerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/product_similar" />

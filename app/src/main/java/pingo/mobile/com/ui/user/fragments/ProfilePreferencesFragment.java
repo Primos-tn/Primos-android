@@ -41,7 +41,7 @@ import static pingo.mobile.com.ui.common.Colors.getAppARGBColor;
 /**
  *
  */
-public class PreferencesFragment extends Fragment {
+public class ProfilePreferencesFragment extends Fragment {
     /**
      * Default oncerateView function.
      *

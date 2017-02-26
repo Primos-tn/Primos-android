@@ -22,10 +22,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pingo.mobile.com.R;
-import pingo.mobile.com.ui.common.activities.HomeAcctivity;
 import pingo.mobile.com.api.models.accounts.PushRegistrationResponse;
 import pingo.mobile.com.api.models.accounts.SignInResponse;
 import pingo.mobile.com.stores.AccountsStore;
+import pingo.mobile.com.ui.home.activities.HomeActivity;
 import pingo.mobile.com.utils.fcm.PingoFireBaseInstanceIdService;
 import pingo.mobile.com.utils.storage.Preferences;
 import rx.Observer;
@@ -119,7 +119,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * Stop the base activity and start Home Activity
      */
     private void goHomeActivity() {
-        Intent intent = new Intent(this, HomeAcctivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
@@ -164,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      *
      */
     public void openHomeActivity() {
-        Intent intent = new Intent(getApplicationContext(), HomeAcctivity.class);
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
         Bundle b = new Bundle();
         b.putBoolean(PASS_PUSH_KEY_TOKEN, true); //Your id
         intent.putExtras(b);

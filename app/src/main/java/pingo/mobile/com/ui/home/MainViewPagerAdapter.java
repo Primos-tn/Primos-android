@@ -47,17 +47,17 @@ public class MainViewPagerAdapter extends FragmentStatePagerAdapter {
             R.drawable.ic_bubble_white
     };
 
-    final String[] tabTitles = {
-            "XX",
-            "XX",
-            "XX"
+    final int[] tabTitles = {
+            R.string.home_tab_list,
+            R.string.home_tab_map,
+            R.string.home_tab_hottest
     };
 
     public View getTabView(Context context, int position) {
         // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
         View v = LayoutInflater.from(context).inflate(R.layout.custom_tab_view, null);
         TextView tv = (TextView) v.findViewById(R.id.textView);
-        tv.setText(tabTitles[position]);
+        tv.setText(context.getResources().getString(tabTitles[position]));
         ImageView img = (ImageView) v.findViewById(R.id.imgView);
         img.setImageResource(listTabsIcons[position]);
         return v;

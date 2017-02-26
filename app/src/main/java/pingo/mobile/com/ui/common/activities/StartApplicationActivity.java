@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import pingo.mobile.com.R;
 import pingo.mobile.com.api.responses.CategoriesApiResponse;
 import pingo.mobile.com.stores.CategoriesStore;
+import pingo.mobile.com.ui.home.activities.HomeActivity;
 import pingo.mobile.com.utils.storage.Preferences;
 import rx.Observer;
 
@@ -14,8 +15,6 @@ import rx.Observer;
  * Created by houssem.fathallah on 05/10/2016.
  */
 public class StartApplicationActivity extends AppCompatActivity {
-    // Splash screen timer
-    private static int SPLASH_TIME_OUT = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

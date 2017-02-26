@@ -7,11 +7,7 @@ import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.Product;
-import pingo.mobile.com.ui.brands.activities.BrandProfileActivity;
 import pingo.mobile.com.ui.common.Dialogs;
-import pingo.mobile.com.ui.common.activities.HomeAcctivity;
-import pingo.mobile.com.ui.common.activities.HomeActivity;
 import pingo.mobile.com.ui.products.activities.ContactBrandAboutProductActivity;
 import pingo.mobile.com.ui.products.activities.ReportProductActivity;
 import pingo.mobile.com.utils.constants.Bundles;
