@@ -3,7 +3,6 @@ package pingo.mobile.com.ui.home;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +45,14 @@ public class MainViewPagerAdapter extends FragmentStatePagerAdapter {
             R.drawable.ic_hot_white,
             R.drawable.ic_bubble_white
     };
+    /**
+     *
+     */
+    final int[] listTabsIconsOff = {
+            R.drawable.ic_map_black,
+            R.drawable.ic_hot_black,
+            R.drawable.ic_bubble_black
+    };
 
     final int[] tabTitles = {
             R.string.home_tab_list,
@@ -53,6 +60,12 @@ public class MainViewPagerAdapter extends FragmentStatePagerAdapter {
             R.string.home_tab_hottest
     };
 
+    /**
+     *
+     * @param context
+     * @param position
+     * @return
+     */
     public View getTabView(Context context, int position) {
         // Given you have a custom layout in `res/layout/custom_tab.xml` with a TextView and ImageView
         View v = LayoutInflater.from(context).inflate(R.layout.custom_tab_view, null);

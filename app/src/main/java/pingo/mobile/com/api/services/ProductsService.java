@@ -35,7 +35,8 @@ public interface ProductsService {
                                             @Query("limit") int limit,
                                             @Query("q") String searchQuery,
                                             @Query("categoriesList[]") int[] categoriesQueryString,
-                                            @Query(value="map", encodeValue = true) Map<String, Object> countriesQueryString,
+                                            @Query(value="map[center][]") double[] mapCenter,
+                                            @Query(value="map[distance]") Double mapDistance,
                                             @Query("age") int age);
 
     @GET(Products.PRODUCT_LOCATIONS)

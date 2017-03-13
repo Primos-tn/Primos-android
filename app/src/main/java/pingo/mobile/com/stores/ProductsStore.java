@@ -16,7 +16,9 @@ import pingo.mobile.com.api.routes.Products;
 import pingo.mobile.com.api.services.CommonRestApiService;
 import pingo.mobile.com.api.services.ProductsService;
 import pingo.mobile.com.utils.constants.Api;
+import retrofit.ErrorHandler;
 import retrofit.RestAdapter;
+import retrofit.RetrofitError;
 import rx.Observable;
 import rx.Observer;
 
@@ -81,6 +83,7 @@ public class ProductsStore {
      * @return
      */
     public static Observable<ProductsApiResponse> getProducts(int page, int limit) {
+
         RestAdapter restAdapter = CommonRestApiService.getRestAdapter();
         ProductsService service = restAdapter.create(ProductsService.class);
         SearchParamsOptions filterOptions = SearchParamsOptions.getInstance();
@@ -89,7 +92,8 @@ public class ProductsStore {
                 limit,
                 filterOptions.getSearchQueryString(),
                 filterOptions.getCategoriesQueryString(),
-                filterOptions.getLocationQueryString(),
+                filterOptions.getMapCenterQueryString(),
+                filterOptions.getMapDistanceQueryString(),
                 filterOptions.getAge());
 
         list.subscribe(new Observer<ProductsApiResponse>() {

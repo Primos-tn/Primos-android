@@ -31,4 +31,8 @@ public class Helpers {
         calendar.add(Calendar.SECOND, 61);
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
+
+    public static String formatApiToken (String apiToken) {
+        return null;
+    }
 }

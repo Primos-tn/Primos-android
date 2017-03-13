@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="7dp"
                         android:layout_marginTop="7dp"
-                        android:background="@drawable/ic_remind" />
+                        android:background="@drawable/ic_bell_primary" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -96,7 +96,7 @@
 
                         <ImageView
                             style="@style/ProductSubTitleButton"
-                            android:src="@drawable/ic_heart" />
+                            android:src="@drawable/ic_love_primary" />
 
                         <TextView
                             android:id="@+id/votes_count"
@@ -107,7 +107,7 @@
 
                         <ImageView
                             style="@style/ProductSubTitleButton"
-                            android:src="@drawable/ic_stores" />
+                            android:src="@drawable/ic_pins_primary" />
 
                         <TextView
                             android:id="@+id/stores_count"
@@ -118,7 +118,7 @@
 
                         <ImageView
                             style="@style/ProductSubTitleButton"
-                            android:src="@drawable/ic_gallery" />
+                            android:src="@drawable/ic_pictures_stack_primary" />
 
                         <TextView
                             android:id="@+id/pictures_count"
@@ -202,12 +202,12 @@
                     <ImageView
                         android:id="@+id/vote_up_btn"
                         style="@style/ProductMenuButton"
-                        android:src="@drawable/vote_up" />
+                        android:src="@drawable/ic_love_primary" />
 
                     <ImageView
                         android:id="@+id/share_btn"
                         style="@style/ProductMenuButton"
-                        android:src="@drawable/ic_share" />
+                        android:src="@drawable/ic_paper_plane_primary" />
 
                     <ImageView
                         android:id="@+id/menu_btn"

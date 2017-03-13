@@ -17,7 +17,4 @@ public abstract class BasePagerAdapter extends FragmentPagerAdapter {
         return null;
     }
 
-    public abstract int getDrawableId(int i);
-
-    public abstract int getDrawableOffId(int i);
 }

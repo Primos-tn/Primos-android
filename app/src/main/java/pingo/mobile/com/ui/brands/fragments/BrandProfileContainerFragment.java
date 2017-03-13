@@ -10,6 +10,7 @@ package pingo.mobile.com.ui.brands.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
@@ -21,24 +22,23 @@ import android.view.ViewGroup;
 import pingo.mobile.com.R;
 import pingo.mobile.com.api.models.Brand;
 import pingo.mobile.com.stores.BrandsStore;
-import pingo.mobile.com.ui.brands.ProfilePagerAdapter;
-import pingo.mobile.com.ui.common.TabLayout;
+import pingo.mobile.com.ui.brands.BrandProfilePagerAdapter;
 import pingo.mobile.com.utils.constants.Bundles;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class ProfileContainerFragment extends Fragment implements View.OnClickListener {
+public class BrandProfileContainerFragment extends Fragment implements View.OnClickListener {
     /**
      * Setter of base fragment toolbar.
      */
     ViewPager pager;
-    ProfilePagerAdapter adapter;
-    TabLayout tabs;
+    BrandProfilePagerAdapter adapter;
+    TabLayout tabLayout;
 
     /**
-     * Defines the total number of tabs.
+     * Defines the total number of tabLayout.
      */
     int brandId;
     private HeaderFragment headerFragment;
@@ -56,17 +56,10 @@ public class ProfileContainerFragment extends Fragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.brand_profile_base_fragment, container, false);
         brandId = getActivity().getIntent().getExtras().getInt(Bundles.OPENED_BRAND_ID);
-        /**
-         * Creating The HomePagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-         */
-        CharSequence Titles[] = {
-                getResources().getString(R.string.brands_info_tab),
-                getResources().getString(R.string.brands_products_tab),
-                getResources().getString(R.string.brands_stores_tab)
-        };
 
 
-        adapter = new ProfilePagerAdapter(brandId, getActivity().getSupportFragmentManager(), Titles);
+
+        adapter = new BrandProfilePagerAdapter(brandId, getActivity().getSupportFragmentManager());
         /**
          * Assigning ViewPager View and setting the adapter
          */
@@ -77,21 +70,40 @@ public class ProfileContainerFragment extends Fragment implements View.OnClickLi
         /**
          * Assiging the Sliding Tab Layout View
          */
-        tabs = (TabLayout) view.findViewById(R.id.tabs);
-        /**
-         * To make the Tabs Fixed , This makes the tabs Space Evenly in Available width
-         */
-        tabs.setDistributeEvenly(true);
-        /**
-         * Setting Custom Color for the Scroll bar indicator of the Tab View
-         */
-        tabs.setCustomTabColorizer(new TabLayout.TabColorizer() {
+        tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(pager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.tabsScrollColor);
+            public void onTabSelected(TabLayout.Tab tab) {
+                int index = tab.getPosition() ;
+                tabLayout.getTabAt(index).setIcon(adapter.getIconOn(index));
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                int index = tab.getPosition() ;
+                tabLayout.getTabAt(index).setIcon(adapter.getIconOff(index));
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-        tabs.setViewPager(pager, TabLayout.TEXT_ICON_MODE);
+        // Iterate over all tabs and set the custom view
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            if (i == 0){
+                tab.setIcon(adapter.getIconOn(i));
+            }
+            else {
+                tab.setIcon(adapter.getIconOff(i));
+            }
+
+            //tab.setCustomView(adapter.getTabView(getContext(), i));
+        }
         loadInformation();
         return view;
     }

@@ -51,7 +51,7 @@
                 android:layout_below="@id/thumbnail"
                 android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_map" />
+                android:src="@drawable/ic_map_black" />
 
         </RelativeLayout>
 

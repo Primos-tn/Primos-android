@@ -35,4 +35,12 @@
     <string name="email">email</string>
     <string name="action_search_products">Brands</string>
     <string name="action_search_brands">Brands</string>
+    <string name="brand_profile_tab_locations">Locations</string>
+    <string name="brand_profile_tab_products">Products</string>
+    <string name="error_network">Network Error</string>
+    <string name="error_no_response">Error No Response</string>
+    <string name="error_unknown">Unknow Error</string>
+    <string name="error_network_retry">retry</string>
+    <string name="refresh_items">Refresh</string>
+    <string name="load_more">Load More</string>
 </resources>

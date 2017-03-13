@@ -73,13 +73,27 @@ public class SearchParamsOptions {
     /**
      * @return
      */
-    public Map<String, Object> getLocationQueryString() {
-        Map<String, Object> map = new HashMap<String, Object>();
+    public double[] getMapCenterQueryString() {
+        double[] location ;
         if (mapCenter != null) {
-            map.put(LOCATION_CENTER_KEY, new double[]{mapCenter.latitude, mapCenter.longitude});
-            map.put(LOCATION_DISTANCE_KEY, distance);
+            location = new double[]{mapCenter.latitude, mapCenter.longitude};
         }
-        return map;
+        else {
+            // get last loction
+            location = new double[]{47.931066347509784, 2.0214843750000004} ;
+        }
+        return location ;
+    }
+
+    public double getMapDistanceQueryString (){
+        double distanceInKm;
+        if (mapCenter != null) {
+            distanceInKm = distance;
+        }
+        else {
+            distanceInKm = 284727.5676720289 ;
+        }
+        return  distanceInKm ;
     }
 
     /**

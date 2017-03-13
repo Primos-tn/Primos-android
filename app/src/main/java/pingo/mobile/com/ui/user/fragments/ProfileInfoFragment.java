@@ -15,33 +15,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.Circle;
-import com.google.android.gms.maps.model.CircleOptions;
-import com.google.android.gms.maps.model.LatLng;
-import com.greenfrvr.hashtagview.HashtagView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.Category;
-import pingo.mobile.com.stores.CategoriesStore;
-import pingo.mobile.com.stores.UsersStore;
-import pingo.mobile.com.ui.common.CategoriesTag;
-import pingo.mobile.com.utils.storage.Preferences;
-
-import static pingo.mobile.com.ui.common.Colors.getAppARGBColor;
 
 /**
  *
  */
 public class ProfileInfoFragment extends Fragment {
+    private Spinner spinner;
+
     /**
      * Default oncerateView function.
      *
@@ -50,75 +38,20 @@ public class ProfileInfoFragment extends Fragment {
      * @param savedInstanceState
      * @return
      */
-    HashtagView hashtagView;
-    private MapView mMapView;
-    private GoogleMap googleMap;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.user_profile_preferences, container, false);
-        hashtagView = (HashtagView) view.findViewById(R.id.user_profile_preferences_tags);
-        final ArrayList<Category> categories = CategoriesStore.getCategories();
-        hashtagView.setData(categories, CategoriesTag.getTagsTransformer(getActivity()), new HashtagView.DataSelector<Category>() {
-            @Override
-            public boolean preselect(Category item) {
-                return categories.indexOf(item) % 2 == 1;
-            }
-        });
-        hashtagView.addOnTagSelectListener(new HashtagView.TagsSelectListener() {
-            @Override
-            public void onItemSelected(Object item, boolean selected) {
-                Category p = (Category) item;
-                Log.d("CATTT", String.valueOf(selected));
-            }
-        });
-
-        mMapView = (MapView) view.findViewById(R.id.mapView);
-        mMapView.onCreate(savedInstanceState);
-
-        mMapView.onResume(); // needed to get the map to display immediately
-
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
+        View view = inflater.inflate(R.layout.user_profile_info, container, false);
+        List age = new ArrayList<Integer>();
+        for (int i = 15; i <= 100; i++) {
+            age.add(Integer.toString(i));
         }
+        ArrayAdapter<Integer> spinnerArrayAdapter = new ArrayAdapter<Integer>(this.getContext(), android.R.layout.simple_spinner_item, age);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        mMapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap mMap) {
-                googleMap = mMap;
-                // For showing a move to my location button
-                googleMap.setMyLocationEnabled(true);
-                // For dropping a marker at a point on the Map
-                LatLng center = Preferences.getInstance().getLastUserLocationMovedTo();
-                if (center == null) {
-                    center = new LatLng(35, 10);
-                }else {
-                    String x = "x";
-                }
-                final Circle circle = googleMap.addCircle(new CircleOptions()
-                        .center(center)
-                        .radius(50000)
-                        .strokeColor(Color.RED)
-                        .fillColor(getAppARGBColor()));
-
-                // For zooming automatically to the location of the marker
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(center).zoom(8).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
-                    @Override
-                    public void onCameraIdle() {
-                        LatLng center = googleMap.getCameraPosition().target;
-                        Preferences.getInstance().setLastUserLocationMovedTo(center);
-                        circle.setCenter(center);
-                        // TODO add store
-                        UsersStore.updateNearInterests(center);
-                    }
-                });
-            }
-        });
+        spinner = (Spinner) view.findViewById(R.id.spinner);
+        spinner.setAdapter(spinnerArrayAdapter);
         return view;
     }
 }

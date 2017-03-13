@@ -99,5 +99,15 @@
     <string name="brands_list_activity_title">Brands</string>
     <string name="user_profile_account_info_title">Infos</string>
     <string name="user_profile_account_preference_title">Preferences</string>
+    <string name="brand_profile_tab_locations">Locations</string>
+    <string name="brand_profile_tab_products">Products</string>
+    <string name="brand_profile_tab_info">About</string>
+    <string name="error_network">Network Error</string>
+    <string name="error_no_response">Error No Response</string>
+    <string name="error_network_http_error">Error network</string>
+    <string name="error_unknown">Unknow Error</string>
+    <string name="error_network_retry">retry</string>
+    <string name="refresh_items">Refresh</string>
+    <string name="load_more">Load More</string>
 
 </resources>

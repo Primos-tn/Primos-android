@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -30,10 +31,20 @@ import static pingo.mobile.com.api.routes.common.getMediaUrl;
  * UsersAdapter is a subclass of RecyclerView responsible for providing views that represent items in a data set.
  */
 public class ProductsListAdapter extends RecyclerView
-        .Adapter<ProductViewHolder> {
+        .Adapter<RecyclerView.ViewHolder> {
+
+    class FooterViewHolder extends RecyclerView.ViewHolder {
+
+        public FooterViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
     private Context mContext;
     private static ArrayList<Product> arrayOfProducts;
     private int brandId = -1;
+    private static final int FOOTER_TYPE = 1;
+    private static final int ITEM_TYPE = 2;
 
 
     /**
@@ -47,9 +58,9 @@ public class ProductsListAdapter extends RecyclerView
     /**
      * Adapters provide a binding from List<Item> to views that are displayed within a RecyclerView.
      */
-    public ProductsListAdapter(Context mContext, List<Product> productsList, int productId) {
+    public ProductsListAdapter(Context mContext, List<Product> productsList, int brandId) {
         this.mContext = mContext;
-        this.brandId = productId;
+        this.brandId = brandId;
         arrayOfProducts = (ArrayList<Product>) productsList;
     }
 
@@ -57,16 +68,36 @@ public class ProductsListAdapter extends RecyclerView
      * to create a new RecyclerView.ViewHolder and initializes some private fields to be used by RecyclerView.
      */
     @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent,
-                                                int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.home_product_card_view_item, parent, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                      int viewType) {
+        if (viewType == FOOTER_TYPE) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.home_product_footer, parent, false);
+            if (arrayOfProducts.size() == 0){
+                ((TextView)view.findViewById(R.id.home_product_footer_text)).setText(mContext.getResources().getString(R.string.refresh_items));
+            }
+            else {
+                ((TextView)view.findViewById(R.id.home_product_footer_text)).setText(mContext.getResources().getString(R.string.load_more));
+            }
+            return new FooterViewHolder(view);
 
-        return new ProductViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.home_product_card_view_item, parent, false);
+
+            return new ProductViewHolder(view);
+
+        }
     }
 
     @Override
-    public void onBindViewHolder(final ProductViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof ProductViewHolder) {
+            getItemViewHolder((ProductViewHolder) holder, position);
+        }
+    }
+
+    public void getItemViewHolder(final ProductViewHolder holder, int position) {
         Product product = arrayOfProducts.get(position);
         List<Picture> pictures = product.getPictures();
         if (
@@ -87,10 +118,9 @@ public class ProductsListAdapter extends RecyclerView
                                     .getUrl()))
             );
             holder.productName.setText(product.getProductInfo().getName());
-            if (product.isInCollection()){
+            if (product.isInCollection()) {
                 holder.highlight.setText("C");
-            }
-            else {
+            } else {
                 holder.highlight.setText("25%");
             }
             holder.brandName.setText(product.getBrandShortInfo().getName());
@@ -128,7 +158,17 @@ public class ProductsListAdapter extends RecyclerView
      */
     @Override
     public int getItemCount() {
-        return arrayOfProducts.size();
+
+        return arrayOfProducts.size() + 1;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (position == arrayOfProducts.size()) {
+            return FOOTER_TYPE;
+        } else {
+            return ITEM_TYPE;
+
+        }
+    }
 }

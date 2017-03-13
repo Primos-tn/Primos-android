@@ -2,7 +2,8 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,11 +20,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="200dip"
         android:orientation="vertical">
-        <pingo.mobile.com.ui.common.TabLayout
-            android:id="@+id/tabs"
+        <!-- our tablayout to display tabs  -->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            style="@style/MyCustomTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/BaseColor"/>
+            android:layout_height="45dip"
+            android:layout_gravity="bottom" />
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"

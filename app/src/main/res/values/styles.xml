@@ -50,8 +50,8 @@
         <item name="tabMaxWidth">300dip</item>
         <item name="tabIndicatorColor">?attr/colorAccent</item>
         <item name="tabIndicatorHeight">4dp</item>
-        <item name="tabBackground">@color/ColorPrimary</item>
-        <item name="tabSelectedTextColor">@color/ColorPrimary</item>
+        <item name="tabBackground">@color/colorPrimary</item>
+        <item name="tabSelectedTextColor">@color/colorPrimary</item>
     </style>
 
     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
@@ -74,6 +74,12 @@
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    <style name="appButton">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textColor">@color/WhiteColor</item>
+        <item name="android:shadowColor">#000000</item>
+    </style>
     <style name="subHeaderText">
         <item name="android:capitalize">characters</item>
         <item name="android:typeface">monospace</item>
@@ -84,7 +90,23 @@
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+    <style name="cardButtonText">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">4dp</item>
 
+    </style>
+
+    <style name="cardImageIcon">
+        <item name="android:layout_marginTop">5dip</item>
+        <item name="android:layout_width">15dip</item>
+        <item name="android:backgroundTintMode">@color/colorPrimary</item>
+        <item name="android:layout_height">15dip</item>
+    </style>
     <style name="ProductMenuButton">
         <item name="android:layout_width">18dp</item>
         <item name="android:layout_height">18dp</item>

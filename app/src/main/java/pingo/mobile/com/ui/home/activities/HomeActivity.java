@@ -229,8 +229,8 @@ public class HomeActivity extends AppCompatActivity {
      *
      */
     void closeDrawers() {
-
         drawerLayout.closeDrawers();
+        nvDrawer.setCheckedItem(0);
     }
 
     @Override
