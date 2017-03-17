@@ -1,6 +1,6 @@
 package pingo.mobile.com.ui.brands.fragments;
 
-import pingo.mobile.com.api.models.BrandShortInfo;
+import pingo.mobile.com.api.models.brands.BrandShortInfo;
 import pingo.mobile.com.api.responses.BrandsApiResponse;
 import pingo.mobile.com.stores.BrandsStore;
 import pingo.mobile.com.ui.brands.BrandsListAdapter;

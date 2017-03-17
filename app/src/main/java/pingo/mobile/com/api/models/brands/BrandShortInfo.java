@@ -1,8 +1,10 @@
 
-package pingo.mobile.com.api.models;
+package pingo.mobile.com.api.models.brands;
 
 
 import com.google.gson.annotations.SerializedName;
+
+import pingo.mobile.com.api.models.PictureFile;
 
 public class BrandShortInfo {
     public int id;

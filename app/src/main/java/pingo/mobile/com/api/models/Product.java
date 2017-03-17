@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import pingo.mobile.com.api.models.brands.BrandShortInfo;
+
 public class Product {
     @SerializedName("info")
     private ProductInfo productInfo;

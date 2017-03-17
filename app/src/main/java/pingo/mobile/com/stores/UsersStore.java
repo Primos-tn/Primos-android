@@ -4,7 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
-import pingo.mobile.com.api.models.BrandShortInfo;
+import pingo.mobile.com.api.models.brands.BrandShortInfo;
 import pingo.mobile.com.api.models.Product;
 import pingo.mobile.com.api.models.User;
 import pingo.mobile.com.api.services.CommonRestApiService;

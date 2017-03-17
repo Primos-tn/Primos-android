@@ -32,6 +32,8 @@ import pingo.mobile.com.ui.user.activities.SettingsActivity;
 import pingo.mobile.com.utils.constants.Bundles;
 import pingo.mobile.com.utils.storage.Preferences;
 
+import static pingo.mobile.com.ui.common.Dialogs.requireLogin;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -186,8 +188,13 @@ public class HomeActivity extends AppCompatActivity {
                 closeDrawers();
                 return;
             case R.id.nav_profile:
-                intent = new Intent(this, UserProfileActivity.class);
-                startActivity(intent);
+                if (!Preferences.getInstance().isLoggedIn()){
+                    requireLogin(this);
+                }
+                else {
+                    intent = new Intent(this, UserProfileActivity.class);
+                    startActivity(intent);
+                }
                 closeDrawers();
                 return;
             case R.id.nav_settings:

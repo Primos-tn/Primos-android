@@ -2,22 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pingo.mobile.com.ui.products.fragments.ProductsListFragment"
-    android:orientation="vertical">
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/BaseColor"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Looking for "
-        android:id="@+id/auto_search">
-        <requestFocus />
-    </EditText>
-    <ListView
-        android:id="@+id/auto_search_results"
+    android:orientation="vertical"
+    tools:context="pingo.mobile.com.ui.products.fragments.ProductsListFragment">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/auto_search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="@string/action_search"
+            android:textColor="@color/BaseColor">
+            <requestFocus />
+        </EditText>
+
+        <ListView
+            android:layout_below="@+id/auto_search"
+            android:id="@+id/auto_search_results"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/brands_list_recycler_view"
         android:layout_width="match_parent"

@@ -7,6 +7,8 @@
 package pingo.mobile.com.api.services;
 
 
+import java.util.HashMap;
+
 import pingo.mobile.com.api.models.accounts.PushRegistrationRequest;
 import pingo.mobile.com.api.models.accounts.PushRegistrationResponse;
 import pingo.mobile.com.api.models.accounts.SignInRequest;
@@ -43,5 +45,5 @@ public interface AccountsService {
      * @param signInRequest
      */
     @POST(accounts.SIGN_IN)
-    Observable<SignInResponse> login(@Body SignInRequest signInRequest);
+    Observable<SignInResponse> login(@Body HashMap<String, SignInRequest> signInRequest);
 }

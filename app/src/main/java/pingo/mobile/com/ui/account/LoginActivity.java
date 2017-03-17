@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -29,15 +30,14 @@ import pingo.mobile.com.ui.home.activities.HomeActivity;
 import pingo.mobile.com.utils.fcm.PingoFireBaseInstanceIdService;
 import pingo.mobile.com.utils.storage.Preferences;
 import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
 
 import static pingo.mobile.com.utils.constants.Bundles.PASS_PUSH_KEY_TOKEN;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "LOGIN_RESPONSE";
-    public AccessToken accessToken;
     private CallbackManager callbackManager;
-    private String LOGIN_BUTTON_ID = "login";
 
     @BindView(R.id.loading_progress)
     ProgressBar loader;
@@ -49,6 +49,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.login_password)
     EditText passwordEditText;
 
+    @BindView(R.id.login_error_text)
+    TextView errorLoginText;
 
     @BindView(R.id.login_button)
     Button loginButton;
@@ -94,8 +96,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // hide it
         loginButton.setVisibility(View.INVISIBLE);
         loader.setVisibility(View.VISIBLE);
+        errorLoginText.setVisibility(View.GONE);
         AccountsStore
                 .login(usernameValue, passwordValue)
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<SignInResponse>() {
                     @Override
                     public void onCompleted() {
@@ -104,12 +108,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onError(Throwable e) {
+                        loader.setVisibility(View.GONE);
+                        errorLoginText.setVisibility(View.VISIBLE);
                         loginButton.setVisibility(View.VISIBLE);
                     }
 
                     @Override
-                    public void onNext(SignInResponse signUpResponse) {
-                        AccountsStore.setApiToken(getApplicationContext(), signUpResponse);
+                    public void onNext(SignInResponse signInResponse) {
+                        AccountsStore.setApiToken(getApplicationContext(), signInResponse);
                         attachPushTokenToUser();
                     }
                 });
@@ -179,6 +185,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (Preferences.getInstance(getApplicationContext()).getFireBasePushToken() != null ||
                 PingoFireBaseInstanceIdService.getToken() != null
                 ) {
+            // attach userId with push token
             AccountsStore.attachUserToNotification(getApplicationContext())
                     .subscribe(new Observer<PushRegistrationResponse>() {
                         @Override

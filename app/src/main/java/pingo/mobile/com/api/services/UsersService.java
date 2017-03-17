@@ -9,7 +9,7 @@ package pingo.mobile.com.api.services;
 
 import java.util.List;
 
-import pingo.mobile.com.api.models.BrandShortInfo;
+import pingo.mobile.com.api.models.brands.BrandShortInfo;
 import pingo.mobile.com.api.models.Product;
 import pingo.mobile.com.api.models.User;
 import retrofit.Callback;

@@ -20,7 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.Brand;
+import pingo.mobile.com.api.models.brands.Brand;
 import pingo.mobile.com.stores.BrandsStore;
 import pingo.mobile.com.ui.brands.BrandProfilePagerAdapter;
 import pingo.mobile.com.utils.constants.Bundles;

@@ -110,6 +110,7 @@
 
         <activity
             android:name=".ui.user.activities.UserBrandsActivity"
+            android:label="@string/user_brands_activity_title"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.products.activities.ProductDetailsActivity"

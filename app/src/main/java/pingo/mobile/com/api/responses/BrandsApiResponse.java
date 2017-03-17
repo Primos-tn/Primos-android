@@ -4,8 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import pingo.mobile.com.api.models.BrandShortInfo;
-import pingo.mobile.com.api.models.Product;
+import pingo.mobile.com.api.models.brands.BrandShortInfo;
 
 /**
  * Created by houssem.fathallah on 19/02/2017.

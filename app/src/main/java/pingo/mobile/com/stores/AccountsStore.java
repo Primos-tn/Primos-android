@@ -2,6 +2,8 @@ package pingo.mobile.com.stores;
 
 import android.content.Context;
 
+import java.util.HashMap;
+
 import pingo.mobile.com.api.models.accounts.PushRegistrationRequest;
 import pingo.mobile.com.api.models.accounts.PushRegistrationResponse;
 import pingo.mobile.com.api.models.accounts.SignInRequest;
@@ -10,6 +12,7 @@ import pingo.mobile.com.api.models.accounts.SignUpRequest;
 import pingo.mobile.com.api.models.accounts.SignUpResponse;
 import pingo.mobile.com.api.services.AccountsService;
 import pingo.mobile.com.api.services.CommonRestApiService;
+import pingo.mobile.com.utils.constants.Api;
 import pingo.mobile.com.utils.fcm.PingoFireBaseInstanceIdService;
 import pingo.mobile.com.utils.storage.Preferences;
 import retrofit.RestAdapter;
@@ -26,6 +29,7 @@ public class AccountsStore {
      */
     public static void setApiToken(Context context, SignInResponse signInResponse) {
         Preferences.getInstance(context).setApiToken(signInResponse.getToken());
+        Preferences.getInstance(context).setIsLoggedIn(true);
     }
 
     /**
@@ -85,7 +89,9 @@ public class AccountsStore {
     public static Observable<SignInResponse> login(String usernameValue, String passwordValue) {
         RestAdapter restAdapter = CommonRestApiService.getRestAdapter();
         AccountsService service = restAdapter.create(AccountsService.class);
-        return service.login(new SignInRequest(usernameValue, passwordValue));
+        HashMap request = new HashMap<String, SignInRequest>();
+        request.put(Api.ACCOUNT_BODY_KEY, new SignInRequest(usernameValue, passwordValue));
+        return service.login(request);
     }
 
     /**

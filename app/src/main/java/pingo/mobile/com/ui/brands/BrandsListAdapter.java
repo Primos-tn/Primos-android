@@ -10,22 +10,16 @@ package pingo.mobile.com.ui.brands;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.BrandShortInfo;
-import pingo.mobile.com.api.models.Picture;
+import pingo.mobile.com.api.models.brands.BrandShortInfo;
 import pingo.mobile.com.api.models.PictureFile;
 
 import static pingo.mobile.com.api.routes.common.getMediaUrl;

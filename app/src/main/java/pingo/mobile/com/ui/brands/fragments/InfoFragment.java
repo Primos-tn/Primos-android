@@ -21,7 +21,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.Brand;
+import pingo.mobile.com.api.models.brands.Brand;
 import pingo.mobile.com.utils.constants.Bundles;
 
 

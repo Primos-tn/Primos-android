@@ -11,8 +11,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pingo.mobile.com.R;
+import pingo.mobile.com.api.models.brands.BrandFollowResponse;
+import pingo.mobile.com.stores.BrandsStore;
 import pingo.mobile.com.ui.brands.activities.BrandProfileActivity;
 import pingo.mobile.com.utils.constants.Bundles;
+import rx.Observer;
 
 /**
  *
@@ -47,6 +50,30 @@ public class BrandsListAdapterViewHolder extends RecyclerView.ViewHolder {
         mBundle.putInt(Bundles.OPENED_BRAND_ID, this.brandId);
         intent.putExtras(mBundle);
         v.getContext().startActivity(intent);
+    }
+
+
+    @OnClick(R.id.follow_btn)
+    public void onFollowBrandClick(View v) {
+        // attach userId with push token
+        BrandsStore.followBrand(this.brandId)
+                .subscribe(new Observer<BrandFollowResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(BrandFollowResponse brandFollowResponse) {
+
+
+                    }
+                });
     }
 
     public void setBrandId(int brandId) {

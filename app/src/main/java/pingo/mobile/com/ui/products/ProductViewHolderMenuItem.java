@@ -11,6 +11,7 @@ import pingo.mobile.com.ui.common.Dialogs;
 import pingo.mobile.com.ui.products.activities.ContactBrandAboutProductActivity;
 import pingo.mobile.com.ui.products.activities.ReportProductActivity;
 import pingo.mobile.com.utils.constants.Bundles;
+import pingo.mobile.com.utils.storage.Preferences;
 
 /**
  * Click listener for popup menu items
@@ -28,7 +29,13 @@ class ProductViewHolderMenuItem implements PopupMenu.OnMenuItemClickListener {
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.product_item_popup_menu_get_coupons:
-                Dialogs.requireLogin(context);
+                if (Preferences.getInstance().isLoggedIn()){
+                    Dialogs.requireLogin(context);
+                }
+                else {
+
+                }
+
                 break;
             case R.id.product_item_popup_menu_contact_brand:
                 openActivity(ContactBrandAboutProductActivity.class);

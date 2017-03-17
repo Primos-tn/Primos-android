@@ -25,6 +25,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:text="Don't miss it !"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:textColor="@color/WhiteColor"
                 android:layout_height="wrap_content" />
@@ -66,7 +67,15 @@
                 android:padding="15dp"
                 android:text="@string/login"
                 android:textColor="@color/WhiteColor" />
-
+            <TextView
+                android:id="@+id/login_error_text"
+                android:layout_width="match_parent"
+                android:text="oops !!"
+                android:gravity="center"
+                android:layout_margin="5dp"
+                android:textColor="@color/bt_red"
+                android:visibility="gone"
+                android:layout_height="wrap_content" />
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/facebook_login_button"
                 android:layout_width="wrap_content"

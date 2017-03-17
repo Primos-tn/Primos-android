@@ -9,9 +9,8 @@ package pingo.mobile.com.api.services;
 import java.util.List;
 import java.util.Map;
 
-import pingo.mobile.com.api.models.Brand;
-import pingo.mobile.com.api.models.BrandFollowResponse;
-import pingo.mobile.com.api.models.Store;
+import pingo.mobile.com.api.models.brands.Brand;
+import pingo.mobile.com.api.models.brands.BrandFollowResponse;
 import pingo.mobile.com.api.models.User;
 import pingo.mobile.com.api.responses.BrandLocationsApiResponse;
 import pingo.mobile.com.api.responses.BrandsApiResponse;

@@ -9,6 +9,6 @@ public class accounts {
      *
      */
     public static final String REGISTER_PUSH = "/accounts/register-push";
-    public static final String SIGN_UP = "/accounts/sign-up";
-    public static final String SIGN_IN = "/accounts/sign-in";
+    public static final String SIGN_UP = "/accounts/create";
+    public static final String SIGN_IN = "/accounts/login";
 }

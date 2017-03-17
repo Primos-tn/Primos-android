@@ -68,7 +68,7 @@ public class CommonRestApiService {
                             if (Preferences.getInstance().isLoggedIn()) {
                                 request.addHeader(
                                         AUTHENTICATION_REQUEST_HEADER,
-                                        Helpers.formatApiToken(Preferences.getInstance().getApiToken()));
+                                        Helpers.formatApiTokenForHeader(Preferences.getInstance().getApiToken()));
                             }
                         }
                     })

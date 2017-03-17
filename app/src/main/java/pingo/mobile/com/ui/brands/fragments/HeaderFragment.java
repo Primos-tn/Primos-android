@@ -23,8 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pingo.mobile.com.R;
-import pingo.mobile.com.api.models.Brand;
-import pingo.mobile.com.api.models.BrandShortInfo;
+import pingo.mobile.com.api.models.brands.Brand;
 import pingo.mobile.com.api.models.PictureFile;
 
 import static pingo.mobile.com.api.routes.common.getMediaUrl;

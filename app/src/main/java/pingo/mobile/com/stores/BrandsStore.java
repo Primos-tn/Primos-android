@@ -1,19 +1,20 @@
 package pingo.mobile.com.stores;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import pingo.mobile.com.api.models.Brand;
-import pingo.mobile.com.api.models.BrandShortInfo;
-import pingo.mobile.com.api.models.Product;
-import pingo.mobile.com.api.models.SearchParamsOptions;
+import pingo.mobile.com.api.models.brands.Brand;
+import pingo.mobile.com.api.models.brands.BrandFollowResponse;
+import pingo.mobile.com.api.models.brands.BrandShortInfo;
+import pingo.mobile.com.api.models.accounts.SignInRequest;
+import pingo.mobile.com.api.models.accounts.SignInResponse;
 import pingo.mobile.com.api.responses.BrandsApiResponse;
-import pingo.mobile.com.api.responses.ProductsApiResponse;
+import pingo.mobile.com.api.services.AccountsService;
 import pingo.mobile.com.api.services.BrandsService;
 import pingo.mobile.com.api.services.CommonRestApiService;
-import pingo.mobile.com.api.services.ProductsService;
+import pingo.mobile.com.utils.constants.Api;
 import retrofit.RestAdapter;
-import rx.Completable;
 import rx.Observable;
 import rx.Observer;
 
@@ -81,6 +82,15 @@ public class BrandsStore {
         });
 
         return list;
+    }
+
+    /**
+     * Login to app server
+     *
+     * @return
+     */
+    public static Observable<BrandFollowResponse> followBrand(int brandId) {
+        return BrandsStore.getBrandsServiceInstance().followBrand(brandId);
     }
 
 }

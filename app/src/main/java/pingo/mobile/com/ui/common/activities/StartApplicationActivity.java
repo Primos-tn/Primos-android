@@ -32,11 +32,11 @@ public class StartApplicationActivity extends AppCompatActivity {
 
     /**
      *
-     * @param show
+     * @param showError
      */
-    public void toggleView(Boolean show) {
-        findViewById(R.id.loading_view).setVisibility(show ? View.VISIBLE : View.GONE);
-        findViewById(R.id.error_view).setVisibility(show ? View.VISIBLE : View.VISIBLE);
+    public void toggleView(Boolean showError) {
+        findViewById(R.id.loading_view).setVisibility(showError ? View.GONE : View.VISIBLE);
+        findViewById(R.id.error_view).setVisibility(showError ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -44,7 +44,7 @@ public class StartApplicationActivity extends AppCompatActivity {
      */
     @OnClick(R.id.error_view_retry)
     public void getServerInfo() {
-        toggleView(true);
+        toggleView(false);
         CategoriesStore.fetchCategories().subscribe(new Observer<CategoriesApiResponse>() {
             @Override
             public void onCompleted() {
@@ -55,7 +55,7 @@ public class StartApplicationActivity extends AppCompatActivity {
             public void onError(Throwable cause) {
                 try {
                     if (((RetrofitError) cause).getKind() == RetrofitError.Kind.NETWORK) {
-                        toggleView(false);
+                        toggleView(true);
                     }
                 } catch (ClassCastException e) {
 

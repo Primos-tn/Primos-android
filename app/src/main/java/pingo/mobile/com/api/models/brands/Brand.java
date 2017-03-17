@@ -1,5 +1,5 @@
 
-package pingo.mobile.com.api.models;
+package pingo.mobile.com.api.models.brands;
 
 
 import android.os.Parcel;
@@ -7,8 +7,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.lang.reflect.Array;
-import java.util.List;
+import pingo.mobile.com.api.models.PictureFile;
 
 public class Brand implements Parcelable {
     private String name;

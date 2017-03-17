@@ -32,7 +32,12 @@ public class Helpers {
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
-    public static String formatApiToken (String apiToken) {
-        return null;
+    /**
+     *
+     * @param apiToken
+     * @return
+     */
+    public static String formatApiTokenForHeader (String apiToken) {
+        return "Token token=\"" + apiToken + "\"";
     }
 }
